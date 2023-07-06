@@ -31,8 +31,12 @@ do
     {
         Console.WriteLine($"Вопрос №{i + 1}");
         Console.WriteLine(quation[i]);
-        int enterAnswer = int.Parse(Console.ReadLine());
-        if (enterAnswer == answers[i]) countAnswers++;
+        
+            char enterNumberAnswer = Convert.ToChar(Console.ReadLine());
+            bool isNnumber = char.IsDigit(enterNumberAnswer);
+        
+
+        if (enterNumberAnswer == answers[i]) countAnswers++;
     }
 
     int countDiagnosis = 6;
@@ -49,6 +53,18 @@ do
 
 
 ///Функции
+
+static int ItNumber (char number)
+{
+    bool trueNumber = char.IsDigit(number);
+    while (false)
+    {
+        Console.Write("Введите число: ");
+        number = Convert.ToChar(Console.ReadLine());
+        trueNumber = char.IsDigit(number);
+    }
+    return (int)number;
+}
 static string[] GetQuations()
 {
     string[] quation = new string[5];

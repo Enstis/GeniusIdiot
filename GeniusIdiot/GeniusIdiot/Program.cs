@@ -32,11 +32,11 @@ do
         Console.WriteLine($"Вопрос №{i + 1}");
         Console.WriteLine(quation[i]);
         
-            char enterNumberAnswer = Convert.ToChar(Console.ReadLine());
-            bool isNnumber = char.IsDigit(enterNumberAnswer);
-        
+            char numCharAnswer = Convert.ToChar(Console.ReadLine());
+        int numberAnswer = ItNumber(numCharAnswer);
+            
 
-        if (enterNumberAnswer == answers[i]) countAnswers++;
+        if (numberAnswer == answers[i]) countAnswers++;
     }
 
     int countDiagnosis = 6;
@@ -57,7 +57,7 @@ do
 static int ItNumber (char number)
 {
     bool trueNumber = char.IsDigit(number);
-    while (false)
+    while (!trueNumber)
     {
         Console.Write("Введите число: ");
         number = Convert.ToChar(Console.ReadLine());

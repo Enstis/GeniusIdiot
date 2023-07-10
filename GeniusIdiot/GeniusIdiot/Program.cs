@@ -1,4 +1,6 @@
-﻿List<string> listResult = new List<string>();
+﻿using System.Threading.Channels;
+
+List<string> listResult = new List<string>();
 string result = "";
 Console.Write("Введите ваше имя: ");
 string name = Console.ReadLine();
@@ -33,25 +35,24 @@ do
     {
         Console.WriteLine($"Вопрос №{i + 1}");
         Console.WriteLine(quation[i]);
-        
-            string numCharAnswer = Console.ReadLine();
-        int numberAnswer = ItNumber(numCharAnswer);
-            
+
+        int numberAnswer = GetNumberAnswer();
 
         if (numberAnswer == answers[i]) countAnswers++;
     }
 
     int countDiagnosis = 6;
-    string[] diagnoses = GetDiagnosis();
+    string diagnose = CalculateDiagnosis(valueQuation, countAnswers);
+    
     Console.WriteLine($"Правильных ответов равно {countAnswers}");
-    Console.WriteLine($"{name}, Вы - {diagnoses[countAnswers]}");
+    Console.WriteLine($"{name}, Вы - {diagnose}");
 
     Console.Write($"{name}, хотите снова пройти тест? : ");
     string repeatTest = Console.ReadLine().ToLower();
     agreeRepeatTest = repeatTest == "да" ? true : false;
 
     //
-    result = String.Format("|{0,10}|{1,10}|{2,10}|", name, countAnswers, diagnoses[countAnswers]);
+    result = String.Format("|{0,10}|{1,10}|{2,10}|", name, countAnswers, diagnose);
     listResult.Add(result);
     
     Console.Clear();
@@ -66,6 +67,13 @@ do
 
 } while (agreeRepeatTest);
 
+static string CalculateDiagnosis(int countQuation, int countAnswers)
+{
+    string[] diagnoses = GetDiagnosis();
+    int percenRightanswers = countAnswers * 100 / countQuation;
+
+    return diagnoses[percenRightanswers / 20];
+}
 
 Console.ReadKey();
 
@@ -73,24 +81,7 @@ Console.ReadKey();
 
 ///Функции
 
-static int ItNumber (string number)
-{
-    bool trueNumber = false;
-    
-    
-    while (!trueNumber)
-    {
-        foreach (var item in number)
-        {
-            trueNumber = char.IsDigit(item);
-        }
-        if (trueNumber == true) break;
-        Console.Write("Введите число: ");
-        number = Console.ReadLine();
-    }
-    int numberDigit = int.Parse(number);
-    return numberDigit;
-}
+
 static string[] GetQuations()
 {
     string[] quation = new string[5];
@@ -127,3 +118,22 @@ static string[] GetDiagnosis()
     return diagnosis;
 };
 
+static int GetNumberAnswer()
+{
+    while (true)
+    {
+        try
+        {
+            return int.Parse(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.Write("Введите число: ");
+        } 
+        catch (OverflowException)
+        {
+            Console.WriteLine("Вы ввели слишком большое число!");
+        }
+        
+    }
+}

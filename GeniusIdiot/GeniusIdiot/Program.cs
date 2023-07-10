@@ -1,4 +1,6 @@
-﻿Console.Write("Введите ваше имя: ");
+﻿List<string> listResult = new List<string>();
+string result = "";
+Console.Write("Введите ваше имя: ");
 string name = Console.ReadLine();
 bool agreeRepeatTest;
 do
@@ -32,7 +34,7 @@ do
         Console.WriteLine($"Вопрос №{i + 1}");
         Console.WriteLine(quation[i]);
         
-            char numCharAnswer = Convert.ToChar(Console.ReadLine());
+            string numCharAnswer = Console.ReadLine();
         int numberAnswer = ItNumber(numCharAnswer);
             
 
@@ -47,23 +49,47 @@ do
     Console.Write($"{name}, хотите снова пройти тест? : ");
     string repeatTest = Console.ReadLine().ToLower();
     agreeRepeatTest = repeatTest == "да" ? true : false;
+
+    //
+    result = String.Format("|{0,10}|{1,10}|{2,10}|", name, countAnswers, diagnoses[countAnswers]);
+    listResult.Add(result);
+    
+    Console.Clear();
+    //start table in out value
+    string headingTable = String.Format("|{0,10}|{1,10}|{2,10}|", "Имя", "Баллы", "Диагноз");
+    Console.WriteLine(headingTable);
+    foreach (var item in listResult)
+    {
+        Console.WriteLine(item);
+    }
+    Console.ReadKey();
+
 } while (agreeRepeatTest);
 
+
+Console.ReadKey();
 
 
 
 ///Функции
 
-static int ItNumber (char number)
+static int ItNumber (string number)
 {
-    bool trueNumber = char.IsDigit(number);
+    bool trueNumber = false;
+    
+    
     while (!trueNumber)
     {
+        foreach (var item in number)
+        {
+            trueNumber = char.IsDigit(item);
+        }
+        if (trueNumber == true) break;
         Console.Write("Введите число: ");
-        number = Convert.ToChar(Console.ReadLine());
-        trueNumber = char.IsDigit(number);
+        number = Console.ReadLine();
     }
-    return (int)number;
+    int numberDigit = int.Parse(number);
+    return numberDigit;
 }
 static string[] GetQuations()
 {

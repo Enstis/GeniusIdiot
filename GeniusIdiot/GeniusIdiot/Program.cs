@@ -1,120 +1,140 @@
 ﻿using System.Threading.Channels;
+using System.IO;
 
-List<string> listResult = new List<string>();
-string result = "";
+
+var result = "";
 Console.Write("Введите ваше имя: ");
-string name = Console.ReadLine();
-bool agreeRepeatTest;
+var name = Console.ReadLine();
+var repeatTest = true;
 do
 {
-    int valueQuation = 5;
-    string[] quation = GetQuations();
-    int[] answers = GetAnswer();
-    
-    //начало перемешинвания массива вопросов и ответов
-    Random rnd = new Random();
-    int randomNumber;
-    string tempString;
-    int tempInt;
-    for (int i = answers.Length - 1; i > 0; i--)
-    {
-        randomNumber = rnd.Next(i + 1);
 
-        tempString = quation[randomNumber];
-        quation[randomNumber] = quation[i];
-        quation[i] = tempString;
+    var quation = GetQuations();
+    var countQuation = quation.Count;
+    var answers = GetAnswer();
 
-        tempInt = answers[randomNumber];
-        answers[randomNumber] = answers[i];
-        answers[i] = tempInt;
-               
-    }
-
-    int countAnswers = 0;
-    for (int i = 0; i < quation.Length; i++)
+   
+    var rnd = new Random();
+    var countAnswers = 0;
+    for (int i = 0; i < quation.Count; i++)
     {
         Console.WriteLine($"Вопрос №{i + 1}");
-        Console.WriteLine(quation[i]);
+        var randomQuationsIndex = rnd.Next(0,quation.Count);
+        Console.WriteLine(quation[randomQuationsIndex]);
 
-        int numberAnswer = GetNumberAnswer();
+        var numberAnswer = answers[randomQuationsIndex];
 
         if (numberAnswer == answers[i]) countAnswers++;
+        quation.RemoveAt(randomQuationsIndex);
+        answers.RemoveAt(randomQuationsIndex);
     }
 
-    int countDiagnosis = 6;
-    string diagnose = CalculateDiagnosis(valueQuation, countAnswers);
-    
-    Console.WriteLine($"Правильных ответов равно {countAnswers}");
+    var countDiagnosis = 6;
+    var diagnose = CalculateDiagnosis(countQuation, countAnswers);
+     Console.WriteLine($"Правильных ответов равно {countAnswers}");
     Console.WriteLine($"{name}, Вы - {diagnose}");
 
-    Console.Write($"{name}, хотите снова пройти тест? : ");
-    string repeatTest = Console.ReadLine().ToLower();
-    agreeRepeatTest = repeatTest == "да" ? true : false;
 
-    //
-    result = String.Format("|{0,10}|{1,10}|{2,10}|", name, countAnswers, diagnose);
-    listResult.Add(result);
-    
-    Console.Clear();
-    //start table in out value
-    string headingTable = String.Format("|{0,10}|{1,10}|{2,10}|", "Имя", "Баллы", "Диагноз");
-    Console.WriteLine(headingTable);
-    foreach (var item in listResult)
+    // начало работы с файлом
+
+
+    SaveUserResult(name, countAnswers, diagnose);
+
+    var userChoice = GetUserChoice("Показать таблицу результатов? : ");
+    if (userChoice)
     {
-        Console.WriteLine(item);
+        OutPutResult();      
     }
-    Console.ReadKey();
 
-} while (agreeRepeatTest);
+    repeatTest = GetUserChoice($"{name}, хотите снова пройти тест? : ");
+    
+} while (repeatTest);
+
+
+
+///Функции
+static void OutPutResult()
+{
+    using (var sr = new StreamReader("tableResult.txt"))
+    {
+        Console.WriteLine(String.Format("|{0,10}|{1,10}|{2,10}|", "Имя", "Баллы", "Диагноз"));
+        while (!sr.EndOfStream)
+        {
+            var lineInFile = sr.ReadLine().Split("*");
+            var name = lineInFile[0];
+            var countrRightAnswer = int.Parse(lineInFile[1]);
+            var diagnose = lineInFile[2];
+            Console.WriteLine("|{0,10}|{1,10}|{2,10}|", name, countrRightAnswer, diagnose);
+        }
+
+    }
+}
+
+static bool GetUserChoice(string answer)
+{
+    Console.WriteLine(answer);
+    var userChoise = Console.ReadLine().ToLower();
+    if (userChoise == "да") return true;
+    return false;
+}
+
+static void SaveUserResult(string name, int countAnswers, string diagnose) 
+{
+    var resultForRecord = $"{name}*{countAnswers}*{diagnose}"; //создаем шаблон для добавления в файл
+    AppendToFile("tableResult.txt", resultForRecord);      
+    
+}
+static void AppendToFile (string textFileName, string resultForRecord)   //добавляем значение в файл
+{
+    using (var tableResult = new StreamWriter(textFileName, true, System.Text.Encoding.Default))
+    {
+        tableResult.WriteLine(resultForRecord);
+    }
+}
 
 static string CalculateDiagnosis(int countQuation, int countAnswers)
 {
-    string[] diagnoses = GetDiagnosis();
-    int percenRightanswers = countAnswers * 100 / countQuation;
+    var diagnoses = GetDiagnosis();
+    var percenRightanswers = countAnswers * 100 / countQuation;
 
     return diagnoses[percenRightanswers / 20];
 }
 
 Console.ReadKey();
 
-
-
-///Функции
-
-
-static string[] GetQuations()
+static List<string> GetQuations()
 {
-    string[] quation = new string[5];
+    var quation = new List<string>();
 
-    quation[0] = "Сколько будет 2 плюс 2 умноженное на 2?";
-    quation[1] = "Бревно нужно распилить на 10 частей, сколько надо сделать распилов?";
-    quation[2] = "На двух руках 10 пальцев. Сколько палцев на 5 руках?";
-    quation[3] = "Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола?";
-    quation[4] = "5 свечей горело, 2 потухли. Сколько осталось?";
+    quation.Add( "Сколько будет 2 плюс 2 умноженное на 2?");
+    quation.Add("Бревно нужно распилить на 10 частей, сколько надо сделать распилов?");
+    quation.Add("На двух руках 10 пальцев. Сколько палцев на 5 руках?");
+    quation.Add("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола?");
+    quation.Add("5 свечей горело, 2 потухли. Сколько осталось?");
 
     return quation;
 };
 
-static int[] GetAnswer()
+static List<int> GetAnswer()
 {
-    int[] answers = new int[5];
-    answers[0] = 6;
-    answers[1] = 9;
-    answers[2] = 25;
-    answers[3] = 60;
-    answers[4] = 2;
+    var answers = new List<int>();
+    answers.Add(6);
+    answers.Add(9);
+    answers.Add(25);
+    answers.Add(60);
+    answers.Add(2);
     return answers;
 };
 
-static string[] GetDiagnosis()
+static  List<string> GetDiagnosis()
 {
-    string[] diagnosis = new string[6];
-    diagnosis[0] = "Идиот";
-    diagnosis[1] = "Кретин";
-    diagnosis[2] = "Дурак";
-    diagnosis[3] = "Нормальный";
-    diagnosis[4] = "Талант";
-    diagnosis[5] = "Гений";
+    var diagnosis = new List<string>();
+    diagnosis.Add("Идиот");
+    diagnosis.Add("Кретин");
+    diagnosis.Add("Дурак");
+    diagnosis.Add("Нормальный");
+    diagnosis.Add("Талант");
+    diagnosis.Add("Гений");
     return diagnosis;
 };
 
@@ -129,11 +149,11 @@ static int GetNumberAnswer()
         catch (FormatException)
         {
             Console.Write("Введите число: ");
-        } 
+        }
         catch (OverflowException)
         {
             Console.WriteLine("Вы ввели слишком большое число!");
         }
-        
+
     }
 }

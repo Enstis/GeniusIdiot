@@ -8,25 +8,25 @@ var name = Console.ReadLine();
 var repeatTest = true;
 do
 {
-
-    var quation = GetQuations();
-    var countQuation = quation.Count;
-    var answers = GetAnswer();
-
+    var questions = new QuestionsStorage().Quations;
    
-    var rnd = new Random();
+    var countQuation = questions.Count;
     var countAnswers = 0;
-    for (int i = 0; i < quation.Count; i++)
+
+    var rnd = new Random();
+    
+    for (int i = 0; i < countQuation; i++)
     {
         Console.WriteLine($"Вопрос №{i + 1}");
-        var randomQuationsIndex = rnd.Next(0,quation.Count);
-        Console.WriteLine(quation[randomQuationsIndex]);
+        var randomIndex = rnd.Next(0,questions.Count);
+        Console.WriteLine(questions[randomIndex].Text);
+        var rigthAnswer = QuestionsStorage.GetNumberAnswer();
+        
+        var numberAnswer = questions[randomIndex].Answer;
 
-        var numberAnswer = answers[randomQuationsIndex];
-
-        if (numberAnswer == answers[i]) countAnswers++;
-        quation.RemoveAt(randomQuationsIndex);
-        answers.RemoveAt(randomQuationsIndex);
+        if (numberAnswer == rigthAnswer) countAnswers++;
+        questions.RemoveAt(randomIndex);
+        
     }
 
     var countDiagnosis = 6;
@@ -49,6 +49,12 @@ do
     repeatTest = GetUserChoice($"{name}, хотите снова пройти тест? : ");
     
 } while (repeatTest);
+
+
+
+//классы
+
+
 
 
 
@@ -102,29 +108,6 @@ static string CalculateDiagnosis(int countQuation, int countAnswers)
 
 Console.ReadKey();
 
-static List<string> GetQuations()
-{
-    var quation = new List<string>();
-
-    quation.Add( "Сколько будет 2 плюс 2 умноженное на 2?");
-    quation.Add("Бревно нужно распилить на 10 частей, сколько надо сделать распилов?");
-    quation.Add("На двух руках 10 пальцев. Сколько палцев на 5 руках?");
-    quation.Add("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола?");
-    quation.Add("5 свечей горело, 2 потухли. Сколько осталось?");
-
-    return quation;
-};
-
-static List<int> GetAnswer()
-{
-    var answers = new List<int>();
-    answers.Add(6);
-    answers.Add(9);
-    answers.Add(25);
-    answers.Add(60);
-    answers.Add(2);
-    return answers;
-};
 
 static  List<string> GetDiagnosis()
 {
@@ -138,22 +121,40 @@ static  List<string> GetDiagnosis()
     return diagnosis;
 };
 
-static int GetNumberAnswer()
-{
-    while (true)
-    {
-        try
-        {
-            return int.Parse(Console.ReadLine());
-        }
-        catch (FormatException)
-        {
-            Console.Write("Введите число: ");
-        }
-        catch (OverflowException)
-        {
-            Console.WriteLine("Вы ввели слишком большое число!");
-        }
 
+class QuestionsStorage
+{
+    public List<Quations> Quations;
+
+    public QuestionsStorage()
+    {
+        Quations = new List<Quations>
+        {
+            new Quations("Сколько будет 2 плюс 2 умноженное на 2?", 6),
+            new Quations("Бревно нужно распилить на 10 частей, сколько надо сделать распилов?", 9),
+            new Quations("На двух руках 10 пальцев. Сколько палцев на 5 руках?", 25),
+            new Quations("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола?", 60),
+            new Quations("5 свечей горело, 2 потухли. Сколько осталось?", 2),
+        };
+        
+    }
+    public static int GetNumberAnswer()
+    {
+        while (true)
+        {
+            try
+            {
+                return int.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.Write("Введите число: ");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Вы ввели слишком большое число!");
+            }
+
+        }
     }
 }

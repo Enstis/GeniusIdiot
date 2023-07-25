@@ -1,4 +1,4 @@
-﻿class QuestionsStorage
+﻿public class QuestionsStorage
 {
     public List<Quations> Quations;
 
@@ -12,9 +12,9 @@
             new Quations("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола?", 60),
             new Quations("5 свечей горело, 2 потухли. Сколько осталось?", 2),
         };
-        
+
     }
-    public static int GetNumberAnswer()
+    public int GetNumberAnswer()
     {
         while (true)
         {
@@ -33,4 +33,28 @@
 
         }
     }
+    public void QuationAdd()
+    {
+        Console.Write("Введите текст вопроса: ");
+        string enterQuation = Console.ReadLine();
+
+        Console.Write("Введите ответ на введенный вопрос: ");
+        int answer = int.Parse(Console.ReadLine());
+        Quations quation = new Quations(enterQuation,answer);
+        Quations.Add(quation);
+    }
+    public void QuationDelete()
+    {
+        int i = 0;
+       
+        foreach (Quations quation in Quations)
+        {
+            Console.Write($"{i})");
+            Console.WriteLine(quation);
+            i++;
+        }
+        Console.Write("Введите номер вопроса для его удаления: ");
+        int index = int.Parse(Console.ReadLine());
+        Quations.RemoveAt(index);
+        }
 }

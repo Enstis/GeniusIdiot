@@ -10,31 +10,30 @@ User user = new User(name);
 var repeatTest = true;
 do
 {
-    var questions = new QuestionsStorage().Quations;
-    var countQuation = questions.Count;
-   
+    var questions = new QuestionsStorage();
+    var countQuation = questions.Quations.Count;
     var rnd = new Random();
-    
+
     for (int i = 0; i < countQuation; i++)
     {
         Console.WriteLine($"Вопрос №{i + 1}");
-        var randomIndex = rnd.Next(0,questions.Count);
-        Console.WriteLine(questions[randomIndex].Text);
-        var rigthAnswer = QuestionsStorage.GetNumberAnswer();
-        
-        var numberAnswer = questions[randomIndex].Answer;
+        var randomIndex = rnd.Next(0, questions.Quations.Count);
+        Console.WriteLine(questions.Quations[randomIndex].Text);
+        var rigthAnswer = questions.GetNumberAnswer();
+
+        var numberAnswer = questions.Quations[randomIndex].Answer;
 
         if (numberAnswer == rigthAnswer) user.CountRightAnswers++;
-        questions.RemoveAt(randomIndex);
-        
+        questions.Quations.RemoveAt(randomIndex);
+
     }
-    
+
     var countDiagnosis = 6;
     user.Diagnose = CalculateDiagnosis(countQuation, user.CountRightAnswers);
-    
+
     Console.WriteLine($"Правильных ответов равно {user.CountRightAnswers}");
     Console.WriteLine($"{user.Name}, Вы - {user.Diagnose}");
-    
+
     // начало работы с файлом
         UsersResultRepository usersResultRepository = new UsersResultRepository(user);
     usersResultRepository.SaveUserResult();
@@ -44,13 +43,16 @@ do
     {
         usersResultRepository.OutPutResult();      
     }
+    bool AddQuation = GetUserChoice($"{user.Name}, хотите добавить новый вопрос?:");
 
+    questions.QuationAdd();
     repeatTest = GetUserChoice($"{user.Name}, хотите снова пройти тест? : ");
-    
+
 } while (repeatTest);
 
-//классы
-static bool GetUserChoice(string answer)
+
+    //классы
+    static bool GetUserChoice(string answer)
 {
     Console.WriteLine(answer);
     var userChoise = Console.ReadLine().ToLower();
@@ -63,8 +65,8 @@ static string CalculateDiagnosis(int countQuation, int countAnswers)
 {
     var diagnoses = GetDiagnosis();
     var percenRightanswers = countAnswers * 100 / countQuation;
-
-    return diagnoses[percenRightanswers / 20];
+    var percentOfOneAnswers = Math.Round((double)100 / countQuation, 0, MidpointRounding.AwayFromZero);
+    return diagnoses[percenRightanswers / (int)percentOfOneAnswers];
 }
 
 Console.ReadKey();
@@ -81,3 +83,4 @@ static  List<string> GetDiagnosis()
     diagnosis.Add("Гений");
     return diagnosis;
 };
+

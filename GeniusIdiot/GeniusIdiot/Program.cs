@@ -11,20 +11,20 @@ var repeatTest = true;
 do
 {
     var questions = new QuestionsStorage();
-    var countQuation = questions.Quations.Count;
+    var countQuation = questions.QuestionsList.Count;
     var rnd = new Random();
 
     for (int i = 0; i < countQuation; i++)
     {
         Console.WriteLine($"Вопрос №{i + 1}");
-        var randomIndex = rnd.Next(0, questions.Quations.Count);
-        Console.WriteLine(questions.Quations[randomIndex].Text);
+        var randomIndex = rnd.Next(0, questions.QuestionsList.Count);
+        Console.WriteLine(questions.QuestionsList[randomIndex].Text);
         var rigthAnswer = questions.GetNumberAnswer();
 
-        var numberAnswer = questions.Quations[randomIndex].Answer;
+        var numberAnswer = questions.QuestionsList[randomIndex].Answer;
 
         if (numberAnswer == rigthAnswer) user.CountRightAnswers++;
-        questions.Quations.RemoveAt(randomIndex);
+        questions.QuestionsList.RemoveAt(randomIndex);
 
     }
 
@@ -43,9 +43,9 @@ do
     {
         usersResultRepository.OutPutResult();      
     }
-    bool AddQuation = GetUserChoice($"{user.Name}, хотите добавить новый вопрос?:");
+    //bool AddQuation = GetUserChoice($"{user.Name}, хотите добавить новый вопрос?:");
 
-    questions.QuationAdd();
+    //questions.QuationAdd();
     repeatTest = GetUserChoice($"{user.Name}, хотите снова пройти тест? : ");
 
 } while (repeatTest);

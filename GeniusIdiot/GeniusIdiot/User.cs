@@ -7,7 +7,11 @@
     public User(string name)
     {
         Name = name;
-        CountRightAnswers = 0;
+        //CountRightAnswers = 0;
         Diagnose = "Неизвестен";
+    }
+    public void AcceptRightanswers()
+    {
+        CountRightAnswers++;
     }
 }

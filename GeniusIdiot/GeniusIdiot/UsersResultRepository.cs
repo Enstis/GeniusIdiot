@@ -1,38 +1,34 @@
 ﻿public class UsersResultRepository
 {
-    public User User;
 
-    public UsersResultRepository (User user)
+    public static void Save(User user)
     {
-        User = user;
-    }
-    public void SaveUserResult()
-    {
-        var resultForRecord = $"{User.Name}*{User.CountRightAnswers}*{User.Diagnose}"; //создаем шаблон для добавления в файл
-        AppendToFile("tableResult.txt", resultForRecord);
+        var resultForRecord = $"{user.Name}*{user.CountRightAnswers}*{user.Diagnose}"; 
+        FileProvider.Append("tableResult.txt", resultForRecord);
 
     }
-    static void AppendToFile(string textFileName, string resultForRecord)   //добавляем значение в файл
+
+    public static List<User> GetUserResults()
     {
-        using (var tableResult = new StreamWriter(textFileName, true, System.Text.Encoding.Default))
+
+        var value = FileProvider.GetValue("tableResult.txt");
+        var lines = value.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
+        var results = new List<User>();
+
+        foreach (var line in lines)
         {
-            tableResult.WriteLine(resultForRecord);
-        }
-    }
-    public void OutPutResult()
-    {
-        using (var sr = new StreamReader("tableResult.txt"))
-        {
-            Console.WriteLine(String.Format("|{0,10}|{1,10}|{2,10}|", "Имя", "Баллы", "Диагноз"));
-            while (!sr.EndOfStream)
-            {
-                var lineInFile = sr.ReadLine().Split("*");
-                var name = lineInFile[0];
-                var countrRightAnswer = int.Parse(lineInFile[1]);
-                var diagnose = lineInFile[2];
-                Console.WriteLine("|{0,10}|{1,10}|{2,10}|", name, countrRightAnswer, diagnose);
-            }
+            var lineInFile = line.Split("*");
+            var name = lineInFile[0];
+            var countrRightAnswer = int.Parse(lineInFile[1]);
+            var diagnose = lineInFile[2];
 
+            var user = new User(name);
+            user.CountRightAnswers = countrRightAnswer;
+            user.Diagnose = diagnose;
+            results.Add(user);
         }
+
+
+        return results;
     }
 }

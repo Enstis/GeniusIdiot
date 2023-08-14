@@ -1,5 +1,6 @@
 ﻿using System.Threading.Channels;
 using System.IO;
+using GeniusIdiot.Common;
 
 
 
@@ -31,7 +32,7 @@ do
     }
 
     var countDiagnosis = 6;
-    user.Diagnose = CalculateDiagnosis(countQuation, user.CountRightAnswers);
+    user.Diagnose = DiagnoseCalculator.CalculateDiagnosis(countQuation, user.CountRightAnswers);
 
     Console.WriteLine($"Правильных ответов равно {user.CountRightAnswers}");
     Console.WriteLine($"{user.Name}, Вы - {user.Diagnose}");
@@ -84,28 +85,7 @@ static bool GetUserChoice(string answer)
 }
 
 
-static string CalculateDiagnosis(int countQuation, int countAnswers)
-{
-    var diagnoses = GetDiagnosis();
-    var percenRightanswers = countAnswers * 100 / countQuation;
-    var percentOfOneAnswers = Math.Round((double)100 / countQuation, 0, MidpointRounding.AwayFromZero);
-    return diagnoses[percenRightanswers / (int)percentOfOneAnswers];
-}
 
-Console.ReadKey();
-
-
-static List<string> GetDiagnosis()
-{
-    var diagnosis = new List<string>();
-    diagnosis.Add("Идиот");
-    diagnosis.Add("Кретин");
-    diagnosis.Add("Дурак");
-    diagnosis.Add("Нормальный");
-    diagnosis.Add("Талант");
-    diagnosis.Add("Гений");
-    return diagnosis;
-};
 
 static int GetNumber()
 {
@@ -146,8 +126,9 @@ static void AddNewQuestion()
     Console.Write("Введите ответ на введенный вопрос:");
     var answer = GetNumber();
 
-    var newQuestuon = new Questions(text, answer);
+    var newQuestuon = new Question(text, answer);
 
     QuestionsStorage.Add(newQuestuon);
 
 }
+

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-
+using GeniusIdiot.Common;
 public class QuestionsStorage
 {
-    public static List<Questions> GetAll()
+    public static List<Question> GetAll()
     {
-        var questions = new List<Questions>();
+        var questions = new List<Question>();
         if (FileProvider.Exists("fileWithQuestions.txt"))
         {
             var value = FileProvider.GetValue("fileWithQuestions.txt");
@@ -17,24 +17,24 @@ public class QuestionsStorage
                 var answer = int.Parse(lineInFile[1]);
 
 
-                var question = new Questions(text, answer);
+                var question = new Question(text, answer);
 
                 questions.Add(question);
             }
         }
         else
         {
-            questions.Add(new Questions("Сколько будет 2 плюс 2 умноженное на 2 ?", 6));
-            questions.Add(new Questions("На двух руках 10 пальцев.Сколько палцев на 5 руках ?", 25));
-            questions.Add(new Questions("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола ?", 60));
-            questions.Add(new Questions("5 свечей горело, 2 потухли.Сколько осталось?", 2));
-            questions.Add(new Questions("Бревно нужно распилить на 10 частей. Сколько распилов необходимо сделать?", 9));
+            questions.Add(new Question("Сколько будет 2 плюс 2 умноженное на 2 ?", 6));
+            questions.Add(new Question("На двух руках 10 пальцев.Сколько палцев на 5 руках ?", 25));
+            questions.Add(new Question("Укол делают каждые пол часа. Сколько нужно минут, чтобы сделать 3 укола ?", 60));
+            questions.Add(new Question("5 свечей горело, 2 потухли.Сколько осталось?", 2));
+            questions.Add(new Question("Бревно нужно распилить на 10 частей. Сколько распилов необходимо сделать?", 9));
             SaveQuestions(questions);
         }
         return questions;
     }
 
-    private static void SaveQuestions(List<Questions> questions)
+    private static void SaveQuestions(List<Question> questions)
     {
         foreach (var question in questions)
         {
@@ -42,13 +42,13 @@ public class QuestionsStorage
         }
     }
 
-    public static void Add(Questions newQuestuon)
+    public static void Add(Question newQuestuon)
     {
         var resultForRecord = $"{newQuestuon.Text}*{newQuestuon.Answer}";
         FileProvider.Append("fileWithQuestions.txt", resultForRecord);
     }
 
-    public static void Remove(Questions removeQuestion)
+    public static void Remove(Question removeQuestion)
     {
         var questions = GetAll();
         for (int i = 0; i < questions.Count; i++)

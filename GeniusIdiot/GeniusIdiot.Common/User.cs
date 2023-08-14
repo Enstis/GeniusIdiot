@@ -1,4 +1,5 @@
-﻿public class User
+﻿using GeniusIdiot.Common;
+public class User
 {
     public string Name;
     public int CountRightAnswers;

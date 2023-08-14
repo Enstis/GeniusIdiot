@@ -1,4 +1,5 @@
-﻿public class UsersResultRepository
+﻿using GeniusIdiot.Common;
+public class UsersResultRepository
 {
 
     public static void Save(User user)

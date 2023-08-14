@@ -1,9 +1,10 @@
-﻿public class Questions
+﻿using GeniusIdiot.Common;
+public class Question
 {
     public string Text;
     public int Answer;
 
-    public Questions (string text, int answer)
+    public Question (string text, int answer)
     {
         Text = text;
         Answer = answer;

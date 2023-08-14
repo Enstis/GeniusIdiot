@@ -1,5 +1,5 @@
 ﻿using System.Text;
-
+using GeniusIdiot.Common;
 public class FileProvider
 {
     public static void Append(string textFileName, string resultForRecord)   //добавляем значение в файл

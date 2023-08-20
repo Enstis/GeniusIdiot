@@ -11,34 +11,26 @@ do
     Console.Write("Введите ваше имя: ");
     var name = Console.ReadLine();
     var user = new User(name);
+    var game = new Game(user);
 
-    var questions = QuestionsStorage.GetAll();
-    var countQuation = questions.Count;
-
-    var rnd = new Random();
-
-    for (int i = 0; i < countQuation; i++)
+    while (!game.End())
     {
-        Console.WriteLine($"Вопрос №{i + 1}");
-        var randomIndex = rnd.Next(0, questions.Count);
-        Console.WriteLine(questions[randomIndex].Text);
-        var rigthAnswer = GetNumber();
+        var currentQuestion = game.GetNextQuestion();
 
-        var numberAnswer = questions[randomIndex].Answer;
+        Console.WriteLine(game.GetQuestionNumberText());
 
-        if (numberAnswer == rigthAnswer) user.AcceptRightanswers();
-        questions.RemoveAt(randomIndex);
+        Console.WriteLine(currentQuestion.Text);
+        var userAnswer = GetNumber();
+
+        game.AcceptAnswer(userAnswer);
 
     }
-
+    var message = game.CalculateDiagnose();
     var countDiagnosis = 6;
-    user.Diagnose = DiagnoseCalculator.CalculateDiagnosis(countQuation, user.CountRightAnswers);
+
 
     Console.WriteLine($"Правильных ответов равно {user.CountRightAnswers}");
-    Console.WriteLine($"{user.Name}, Вы - {user.Diagnose}");
-
-    
-    UsersResultRepository.Save(user);
+    Console.WriteLine(message);
 
     var userChoice = GetUserChoice("Показать таблицу результатов? : ");
     if (userChoice)
@@ -72,9 +64,6 @@ static void RemoveQuation()
     QuestionsStorage.Remove(removeQuestion);
 }
 
-
-
-
 //классы
 static bool GetUserChoice(string answer)
 {
@@ -84,27 +73,14 @@ static bool GetUserChoice(string answer)
     return false;
 }
 
-
-
-
 static int GetNumber()
 {
-    while (true)
+    int number;
+    while (!InputValidator.TryParseToNumber(Console.ReadLine(), out number, out string errorMessage))
     {
-        try
-        {
-            return int.Parse(Console.ReadLine());
-        }
-        catch (FormatException)
-        {
-            Console.Write("Введите число: ");
-        }
-        catch (OverflowException)
-        {
-            Console.WriteLine("Вы ввели слишком большое число!");
-        }
-
+        Console.WriteLine(errorMessage);
     }
+    return number;
 }
 static void ShowUserResults()
 {

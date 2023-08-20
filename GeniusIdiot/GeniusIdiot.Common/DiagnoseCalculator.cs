@@ -8,7 +8,7 @@ namespace GeniusIdiot.Common
 {
     public class DiagnoseCalculator
     {
-        public static string CalculateDiagnosis(int countQuation, int countAnswers)
+        public static string Calculate(int countQuation, int countAnswers)
         {
             var diagnoses = GetDiagnosis();
             var percenRightanswers = countAnswers * 100 / countQuation;

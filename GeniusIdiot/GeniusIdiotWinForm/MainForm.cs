@@ -7,11 +7,7 @@ namespace GeniusIdiotWinForm
 {
     public partial class mainForm : Form
     {
-        private List<Question> questions;
-        private Question currentQuestion;
-        private User user;
-        private int countQuestions;
-        private int questionNumber;
+        Game game;
         public mainForm()
         {
             InitializeComponent();
@@ -19,45 +15,60 @@ namespace GeniusIdiotWinForm
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            user = new User("Íåèçâåñòíî");
-            questions = QuestionsStorage.GetAll();
-            countQuestions = questions.Count;
-            questionNumber = 0;
+            var enterNameForm = new EnterNameForm();
+            enterNameForm.ShowDialog();
+
+            var user = new User(enterNameForm.enterNameTextBox.Text);
+            game = new Game(user);
+
             ShowNextQuestion();
-           
+
         }
 
         private void ShowNextQuestion()
         {
-            var rnd = new Random();
-            var randomIndex = rnd.Next(0, questions.Count);
-            currentQuestion = questions[randomIndex];
-
+            var currentQuestion = game.GetNextQuestion();
             questionTextLabel.Text = currentQuestion.Text;
 
-            questionNumber++;
-            questionNumberLabel.Text = $"Âîïğîñ ¹{questionNumber}";
-            
+            questionNumberLabel.Text = game.GetQuestionNumberText();
         }
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var userAnswer = int.Parse(userAnswerTextBox.Text);
-            var rightAnswer = currentQuestion.Answer;
-
-            if (rightAnswer == userAnswer) user.AcceptRightanswers();
-            questions.Remove(currentQuestion);
-
-
-            var endGame = questions.Count == 0;
-            if (endGame) 
+            var parsed = InputValidator.TryParseToNumber(userAnswerTextBox.Text, out int userAnswer, out string errorMessage);
+            if (!parsed)
             {
-                user.Diagnose = DiagnoseCalculator.CalculateDiagnosis(countQuestions, user.CountRightAnswers);
-                MessageBox.Show($"{user.Name}, Âàø äèàãíîç {user.Diagnose}");
-                return;
+                MessageBox.Show(errorMessage);
             }
-            
-            ShowNextQuestion();
+            else
+            {
+                game.AcceptAnswer(userAnswer);
+
+                if (game.End())
+                {
+                    var message = game.CalculateDiagnose();
+                    MessageBox.Show(message);
+                    return;
+                }
+                ShowNextQuestion();
+            }
         }
+
+        private void âûõîäToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ğåñòàğòToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void ïîêàçàòüÒàáëèöóĞåçóëüòàòîâToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resultsForm = new ResultsForm();
+            resultsForm.ShowDialog();
+        }
+
     }
 }

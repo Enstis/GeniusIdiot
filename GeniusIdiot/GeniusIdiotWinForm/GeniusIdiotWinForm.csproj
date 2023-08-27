@@ -12,4 +12,10 @@
     <ProjectReference Include="..\GeniusIdiot.Common\GeniusIdiot.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="QuestionAddForm.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

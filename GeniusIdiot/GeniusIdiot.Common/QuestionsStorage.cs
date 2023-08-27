@@ -34,7 +34,7 @@ public class QuestionsStorage
         return questions;
     }
 
-    private static void SaveQuestions(List<Question> questions)
+    public static void SaveQuestions(List<Question> questions)
     {
         foreach (var question in questions)
         {

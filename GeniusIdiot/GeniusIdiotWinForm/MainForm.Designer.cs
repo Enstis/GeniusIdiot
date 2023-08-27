@@ -40,6 +40,9 @@ namespace GeniusIdiotWinForm
             показатьТаблицуРезультатовToolStripMenuItem = new ToolStripMenuItem();
             рестартToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
+            вопросыToolStripMenuItem = new ToolStripMenuItem();
+            удалитьToolStripMenuItem = new ToolStripMenuItem();
+            добавитьToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -81,7 +84,7 @@ namespace GeniusIdiotWinForm
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, вопросыToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(527, 28);
@@ -116,6 +119,27 @@ namespace GeniusIdiotWinForm
             выходToolStripMenuItem.Text = "Выход";
             выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
             // 
+            // вопросыToolStripMenuItem
+            // 
+            вопросыToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { удалитьToolStripMenuItem, добавитьToolStripMenuItem });
+            вопросыToolStripMenuItem.Name = "вопросыToolStripMenuItem";
+            вопросыToolStripMenuItem.Size = new Size(86, 24);
+            вопросыToolStripMenuItem.Text = "Вопросы";
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            удалитьToolStripMenuItem.Size = new Size(224, 26);
+            удалитьToolStripMenuItem.Text = "Удалить";
+            удалитьToolStripMenuItem.Click += удалитьToolStripMenuItem_Click;
+            // 
+            // добавитьToolStripMenuItem
+            // 
+            добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
+            добавитьToolStripMenuItem.Size = new Size(224, 26);
+            добавитьToolStripMenuItem.Text = "Добавить";
+            добавитьToolStripMenuItem.Click += добавитьToolStripMenuItem_Click;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -147,5 +171,8 @@ namespace GeniusIdiotWinForm
         private ToolStripMenuItem показатьТаблицуРезультатовToolStripMenuItem;
         private ToolStripMenuItem рестартToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
+        private ToolStripMenuItem вопросыToolStripMenuItem;
+        private ToolStripMenuItem удалитьToolStripMenuItem;
+        private ToolStripMenuItem добавитьToolStripMenuItem;
     }
 }

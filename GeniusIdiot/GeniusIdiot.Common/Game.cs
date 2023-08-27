@@ -11,7 +11,7 @@ namespace GeniusIdiot.Common
     public class Game
     {
         private List<Question> questions;
-        private Question currentQuestion;
+        public Question currentQuestion;
         private User user;
         private int countQuestions;
         private int questionNumber = 0;

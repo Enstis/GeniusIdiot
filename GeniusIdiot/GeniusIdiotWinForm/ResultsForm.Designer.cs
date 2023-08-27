@@ -43,8 +43,9 @@
             resultsDataGridView.Name = "resultsDataGridView";
             resultsDataGridView.RowHeadersWidth = 51;
             resultsDataGridView.RowTemplate.Height = 29;
-            resultsDataGridView.Size = new Size(434, 338);
+            resultsDataGridView.Size = new Size(434, 344);
             resultsDataGridView.TabIndex = 0;
+            resultsDataGridView.CellContentClick += resultsDataGridView_CellContentClick;
             // 
             // UserNameColumn
             // 
@@ -71,7 +72,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 338);
+            ClientSize = new Size(438, 479);
             Controls.Add(resultsDataGridView);
             Name = "ResultsForm";
             Text = "ResultsForm";

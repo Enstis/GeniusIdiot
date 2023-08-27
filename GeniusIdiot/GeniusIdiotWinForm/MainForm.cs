@@ -70,5 +70,16 @@ namespace GeniusIdiotWinForm
             resultsForm.ShowDialog();
         }
 
+        private void Û‰‡ÎËÚ¸ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var questionDel = new QuestionDelForm();
+            questionDel.ShowDialog();
+        }
+
+        private void ‰Ó·‡‚ËÚ¸ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var questionAdd = new QuestionAddForm();
+            questionAdd.ShowDialog();
+        }
     }
 }

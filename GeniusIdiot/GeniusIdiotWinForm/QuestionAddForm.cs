@@ -33,8 +33,6 @@ namespace GeniusIdiotWinForm
             Close();
         }
 
-        
-
         private void newAnswerTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;

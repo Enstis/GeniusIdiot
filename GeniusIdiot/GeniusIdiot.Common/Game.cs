@@ -31,7 +31,7 @@ namespace GeniusIdiot.Common
             return currentQuestion;
         }
 
-        public void AcceptAnswer (int userAnswer)
+        public void AcceptAnswer(int userAnswer)
         {
             var rightAnswer = currentQuestion.Answer;
 

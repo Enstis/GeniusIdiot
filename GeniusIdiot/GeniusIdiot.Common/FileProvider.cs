@@ -2,16 +2,27 @@
 using GeniusIdiot.Common;
 public class FileProvider
 {
-    public static void Append(string textFileName, string resultForRecord)   //добавляем значение в файл
+    public static void Append(string fileName, string resultForRecord)   //добавляем значение в файл
     {
-        using (var tableResult = new StreamWriter(textFileName, true, System.Text.Encoding.Default))
+        if (fileName.EndsWith("json"))
         {
-            tableResult.WriteLine(resultForRecord);
+            using (var tableResult = new StreamWriter(fileName, false, Encoding.Default))
+            {
+                tableResult.WriteLine(resultForRecord);
+            }
         }
+        else
+        {
+            using (var tableResult = new StreamWriter(fileName, true, Encoding.Default))
+            {
+                tableResult.WriteLine(resultForRecord);
+            }
+        }
+       
     }
     public static string GetValue(string fileName)
     {
-        var reader = new StreamReader(fileName, Encoding.UTF8);
+        var reader = new StreamReader(fileName);
         var value = reader.ReadToEnd();
         reader.Close();
         return value;

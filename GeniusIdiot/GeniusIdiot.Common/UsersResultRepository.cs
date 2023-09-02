@@ -1,35 +1,33 @@
 ﻿using GeniusIdiot.Common;
+using Newtonsoft.Json;
+
 public class UsersResultRepository
 {
+    public static string Path = "tableResult.json";
 
     public static void Save(User user)
     {
-        var resultForRecord = $"{user.Name}*{user.CountRightAnswers}*{user.Diagnose}"; 
-        FileProvider.Append("tableResult.txt", resultForRecord);
+
+        var userResults = GetUserResults();
+        userResults.Add(user);
+        SaveFile(userResults);
+
+        //var resultForRecord = $"{user.Name}*{user.CountRightAnswers}*{user.Diagnose}"; 
+        //FileProvider.Append(Path, resultForRecord);
 
     }
 
     public static List<User> GetUserResults()
     {
+        if (!FileProvider.Exists(Path)) return new List<User>();
 
-        var value = FileProvider.GetValue("tableResult.txt");
-        var lines = value.Split(new char[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
-        var results = new List<User>();
-
-        foreach (var line in lines)
-        {
-            var lineInFile = line.Split("*");
-            var name = lineInFile[0];
-            var countrRightAnswer = int.Parse(lineInFile[1]);
-            var diagnose = lineInFile[2];
-
-            var user = new User(name);
-            user.CountRightAnswers = countrRightAnswer;
-            user.Diagnose = diagnose;
-            results.Add(user);
-        }
-
-
-        return results;
+        var fileData = FileProvider.GetValue(Path);
+        var userResults = JsonConvert.DeserializeObject<List<User>>(fileData);
+        return userResults;
+    }
+    static void SaveFile(List<User> userResults)
+    {
+        var jsonData = JsonConvert.SerializeObject(userResults, Formatting.Indented);
+        FileProvider.Append(Path, jsonData);
     }
 }

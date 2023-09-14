@@ -31,6 +31,7 @@ namespace GeniusIdiotWinForm
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             nextButton = new Button();
             questionNumberLabel = new Label();
             questionTextLabel = new Label();
@@ -43,6 +44,9 @@ namespace GeniusIdiotWinForm
             вопросыToolStripMenuItem = new ToolStripMenuItem();
             удалитьToolStripMenuItem = new ToolStripMenuItem();
             добавитьToolStripMenuItem = new ToolStripMenuItem();
+            timer1 = new System.Windows.Forms.Timer(components);
+            label1 = new Label();
+            countDownLabel = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -87,7 +91,7 @@ namespace GeniusIdiotWinForm
             menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, вопросыToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(527, 28);
+            menuStrip1.Size = new Size(542, 28);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -129,22 +133,48 @@ namespace GeniusIdiotWinForm
             // удалитьToolStripMenuItem
             // 
             удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            удалитьToolStripMenuItem.Size = new Size(224, 26);
+            удалитьToolStripMenuItem.Size = new Size(159, 26);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += удалитьToolStripMenuItem_Click;
             // 
             // добавитьToolStripMenuItem
             // 
             добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            добавитьToolStripMenuItem.Size = new Size(224, 26);
+            добавитьToolStripMenuItem.Size = new Size(159, 26);
             добавитьToolStripMenuItem.Text = "Добавить";
             добавитьToolStripMenuItem.Click += добавитьToolStripMenuItem_Click;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(324, 89);
+            label1.Name = "label1";
+            label1.Size = new Size(140, 20);
+            label1.TabIndex = 5;
+            label1.Text = "Оставшееся время";
+            // 
+            // countDownLabel
+            // 
+            countDownLabel.AutoSize = true;
+            countDownLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            countDownLabel.Location = new Point(272, 170);
+            countDownLabel.Name = "countDownLabel";
+            countDownLabel.Size = new Size(255, 41);
+            countDownLabel.TabIndex = 6;
+            countDownLabel.Text = "Обратный отсчет";
             // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(527, 438);
+            ClientSize = new Size(542, 438);
+            Controls.Add(countDownLabel);
+            Controls.Add(label1);
             Controls.Add(userAnswerTextBox);
             Controls.Add(questionTextLabel);
             Controls.Add(questionNumberLabel);
@@ -174,5 +204,8 @@ namespace GeniusIdiotWinForm
         private ToolStripMenuItem вопросыToolStripMenuItem;
         private ToolStripMenuItem удалитьToolStripMenuItem;
         private ToolStripMenuItem добавитьToolStripMenuItem;
+        private Label label1;
+        private Label countDownLabel;
+        public System.Windows.Forms.Timer timer1;
     }
 }

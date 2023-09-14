@@ -21,6 +21,8 @@ namespace GeniusIdiotWinForm
 
         private void applyEnteringNameButton_Click(object sender, EventArgs e)
         {
+            //mainForm mainForm = new mainForm();
+            //mainForm.timer1.Enabled = true;
             Close();
         }
 

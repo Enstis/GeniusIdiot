@@ -8,6 +8,7 @@ namespace GeniusIdiotWinForm
     public partial class mainForm : Form
     {
         Game game;
+        int timeSecond;
         public mainForm()
         {
             InitializeComponent();
@@ -15,18 +16,24 @@ namespace GeniusIdiotWinForm
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            timeSecond = 10;
+            
+
             var enterNameForm = new EnterNameForm();
             enterNameForm.ShowDialog();
 
             var user = new User(enterNameForm.enterNameTextBox.Text);
             game = new Game(user);
 
+            timer1.Enabled = true;
+           
             ShowNextQuestion();
 
         }
 
         private void ShowNextQuestion()
         {
+            timeSecond = 10;
             var currentQuestion = game.GetNextQuestion();
             questionTextLabel.Text = currentQuestion.Text;
 
@@ -46,6 +53,7 @@ namespace GeniusIdiotWinForm
 
                 if (game.End())
                 {
+                    timer1.Enabled = false;
                     var message = game.CalculateDiagnose();
                     MessageBox.Show(message);
                     return;
@@ -81,5 +89,21 @@ namespace GeniusIdiotWinForm
             var questionAdd = new QuestionAddForm();
             questionAdd.ShowDialog();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeSecond--;
+            countDownLabel.Text = timeSecond.ToString();
+            if (timeSecond == 0)
+            {
+                
+                if (countQuestions == 0)
+                timeSecond = 10;
+                game.AcceptAnswer(0);
+                ShowNextQuestion();
+            }
+        }
+
+
     }
 }

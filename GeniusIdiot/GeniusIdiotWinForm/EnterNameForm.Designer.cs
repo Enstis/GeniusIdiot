@@ -31,6 +31,7 @@
             applyEnteringNameButton = new Button();
             label1 = new Label();
             enterNameTextBox = new TextBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // applyEnteringNameButton
@@ -60,15 +61,25 @@
             enterNameTextBox.Size = new Size(141, 27);
             enterNameTextBox.TabIndex = 2;
             // 
-            // EnterName
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 310);
+            label2.Name = "label2";
+            label2.Size = new Size(382, 40);
+            label2.TabIndex = 3;
+            label2.Text = "Как только вы подтвердите имя, сразу начнется игра.\r\nУ вас есть 10 секунд, чтобы ответить на вопрос.";
+            // 
+            // EnterNameForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(404, 382);
+            Controls.Add(label2);
             Controls.Add(enterNameTextBox);
             Controls.Add(label1);
             Controls.Add(applyEnteringNameButton);
-            Name = "EnterName";
+            Name = "EnterNameForm";
             Text = "Регистрация";
             ResumeLayout(false);
             PerformLayout();
@@ -79,5 +90,6 @@
         private Button applyEnteringNameButton;
         private Label label1;
         public TextBox enterNameTextBox;
+        private Label label2;
     }
 }

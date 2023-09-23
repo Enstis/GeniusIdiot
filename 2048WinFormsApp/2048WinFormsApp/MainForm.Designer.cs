@@ -28,20 +28,99 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label1 = new Label();
+            scoreLabel = new Label();
+            menuStrip1 = new MenuStrip();
+            играToolStripMenuItem = new ToolStripMenuItem();
+            рестартToolStripMenuItem = new ToolStripMenuItem();
+            выходToolStripMenuItem = new ToolStripMenuItem();
+            правилаToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(194, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Счет:";
+            // 
+            // scoreLabel
+            // 
+            scoreLabel.AutoSize = true;
+            scoreLabel.Location = new Point(243, 29);
+            scoreLabel.Name = "scoreLabel";
+            scoreLabel.Size = new Size(17, 20);
+            scoreLabel.TabIndex = 1;
+            scoreLabel.Text = "0";
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { играToolStripMenuItem, правилаToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(369, 28);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // играToolStripMenuItem
+            // 
+            играToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { рестартToolStripMenuItem, выходToolStripMenuItem });
+            играToolStripMenuItem.Name = "играToolStripMenuItem";
+            играToolStripMenuItem.Size = new Size(57, 24);
+            играToolStripMenuItem.Text = "Игра";
+            // 
+            // рестартToolStripMenuItem
+            // 
+            рестартToolStripMenuItem.Name = "рестартToolStripMenuItem";
+            рестартToolStripMenuItem.Size = new Size(224, 26);
+            рестартToolStripMenuItem.Text = "Рестарт";
+            рестартToolStripMenuItem.Click += рестартToolStripMenuItem_Click;
+            // 
+            // выходToolStripMenuItem
+            // 
+            выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            выходToolStripMenuItem.Size = new Size(224, 26);
+            выходToolStripMenuItem.Text = "Выход";
+            выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
+            // 
+            // правилаToolStripMenuItem
+            // 
+            правилаToolStripMenuItem.Name = "правилаToolStripMenuItem";
+            правилаToolStripMenuItem.Size = new Size(84, 24);
+            правилаToolStripMenuItem.Text = "Правила";
+            правилаToolStripMenuItem.Click += правилаToolStripMenuItem_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(321, 374);
+            ClientSize = new Size(369, 374);
+            Controls.Add(scoreLabel);
+            Controls.Add(label1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Text = "2048";
             Load += Form1_Load;
             KeyDown += MainForm_KeyDown;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
+        private Label scoreLabel;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem играToolStripMenuItem;
+        private ToolStripMenuItem рестартToolStripMenuItem;
+        private ToolStripMenuItem выходToolStripMenuItem;
+        private ToolStripMenuItem правилаToolStripMenuItem;
     }
 }

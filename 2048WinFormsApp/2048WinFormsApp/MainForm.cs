@@ -42,7 +42,17 @@ namespace _2048WinFormsApp
             var indexColumn = randomNumberLabel % mapSize;
             if (labelsMap[indexRow, indexColumn].Text == string.Empty)
             {
-                labelsMap[indexRow, indexColumn].Text = "2"; //рандомно генерируем либо 2 либо 4
+                string textNumber = "";
+                int number = random.Next(100);
+                if (number > 0 && number <= 25)
+                {
+                    textNumber = "4";
+                }
+                else if (number > 25 && number <= 100)
+                {
+                    textNumber = "2";
+                }
+                labelsMap[indexRow, indexColumn].Text = textNumber; //рандомно генерируем либо 2 либо 4
             }
             else GenerateNumber();
         }

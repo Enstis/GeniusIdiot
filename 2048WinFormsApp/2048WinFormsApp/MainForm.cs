@@ -43,7 +43,7 @@ namespace _2048WinFormsApp
             if (labelsMap[indexRow, indexColumn].Text == string.Empty)
             {
                 string textNumber = "";
-                int number = random.Next(100);
+                int number = random.Next(101);
                 if (number > 0 && number <= 25)
                 {
                     textNumber = "4";

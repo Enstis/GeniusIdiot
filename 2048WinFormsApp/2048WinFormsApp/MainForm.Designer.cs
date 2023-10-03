@@ -35,6 +35,8 @@
             рестартToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
             правилаToolStripMenuItem = new ToolStripMenuItem();
+            label2 = new Label();
+            bestLabel = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,14 +78,14 @@
             // рестартToolStripMenuItem
             // 
             рестартToolStripMenuItem.Name = "рестартToolStripMenuItem";
-            рестартToolStripMenuItem.Size = new Size(224, 26);
+            рестартToolStripMenuItem.Size = new Size(144, 26);
             рестартToolStripMenuItem.Text = "Рестарт";
             рестартToolStripMenuItem.Click += рестартToolStripMenuItem_Click;
             // 
             // выходToolStripMenuItem
             // 
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(224, 26);
+            выходToolStripMenuItem.Size = new Size(144, 26);
             выходToolStripMenuItem.Text = "Выход";
             выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
             // 
@@ -94,11 +96,31 @@
             правилаToolStripMenuItem.Text = "Правила";
             правилаToolStripMenuItem.Click += правилаToolStripMenuItem_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 29);
+            label2.Name = "label2";
+            label2.Size = new Size(104, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Лучший счет: ";
+            // 
+            // bestLabel
+            // 
+            bestLabel.AutoSize = true;
+            bestLabel.Location = new Point(111, 29);
+            bestLabel.Name = "bestLabel";
+            bestLabel.Size = new Size(17, 20);
+            bestLabel.TabIndex = 4;
+            bestLabel.Text = "0";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(369, 374);
+            Controls.Add(bestLabel);
+            Controls.Add(label2);
             Controls.Add(scoreLabel);
             Controls.Add(label1);
             Controls.Add(menuStrip1);
@@ -122,5 +144,7 @@
         private ToolStripMenuItem рестартToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
         private ToolStripMenuItem правилаToolStripMenuItem;
+        private Label label2;
+        private Label bestLabel;
     }
 }

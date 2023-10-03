@@ -1,11 +1,16 @@
+using Newtonsoft.Json;
+
 namespace _2048WinFormsApp
 {
     public partial class MainForm : Form
     {
+        private string Name;
+        private User User;
         private const int mapSize = 4;
         private Label[,] labelsMap;
         private static Random random = new Random();
         private int score = 0;
+        public static string Path = "2048result.json";
         public MainForm()
         {
             InitializeComponent();
@@ -13,6 +18,9 @@ namespace _2048WinFormsApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            EnterNameForm enterName = new EnterNameForm();
+            enterName.ShowDialog();
+            User = new User(enterName.enterNameTextBox.Text);
             InitMap();
             GenerateNumber();
             ShowScore();
@@ -37,25 +45,44 @@ namespace _2048WinFormsApp
         }
         private void GenerateNumber()
         {
-            var randomNumberLabel = random.Next(mapSize * mapSize);
-            var indexRow = randomNumberLabel / mapSize;
-            var indexColumn = randomNumberLabel % mapSize;
-            if (labelsMap[indexRow, indexColumn].Text == string.Empty)
+            while (true)
             {
-                string textNumber = "";
-                int number = random.Next(101);
-                if (number > 0 && number <= 25)
+                var randomNumberLabel = random.Next(mapSize * mapSize);
+                var indexRow = randomNumberLabel / mapSize;
+                var indexColumn = randomNumberLabel % mapSize;
+
+                if (labelsMap[indexRow, indexColumn].Text == string.Empty)
                 {
-                    textNumber = "4";
+                    string textNumber = "";
+                    int number = random.Next(101);
+                    if (number > 0 && number <= 25)
+                    {
+                        textNumber = "4";
+
+                    }
+                    else if (number > 25 && number <= 100)
+                    {
+                        textNumber = "2";
+
+                    }
+
+                    if (textNumber != string.Empty)
+                    {
+                        labelsMap[indexRow, indexColumn].Text = textNumber;
+                        break;
+                    }
+
+                    //ğàíäîìíî ãåíåğèğóåì ëèáî 2 ëèáî 4
                 }
-                else if (number > 25 && number <= 100)
-                {
-                    textNumber = "2";
-                }
-                labelsMap[indexRow, indexColumn].Text = textNumber; //ğàíäîìíî ãåíåğèğóåì ëèáî 2 ëèáî 4
             }
-            else GenerateNumber();
+
+            User.scoreUser = int.Parse(scoreLabel.Text);
+            //UserResultRepository.Save(User);
+            //MessageBox.Show($"Âû ïğîèãğàëè. Âàø ñ÷åò:{User.scoreUser}");
+
+
         }
+
 
 
         private Label CreateLabel(int indexRow, int indexColumn)
@@ -260,7 +287,9 @@ namespace _2048WinFormsApp
 
         private void ğåñòàğòToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            UserResultRepository.Save(User);
             Application.Restart();
+
         }
 
         private void âûõîäToolStripMenuItem_Click(object sender, EventArgs e)
@@ -273,5 +302,7 @@ namespace _2048WinFormsApp
             RulesForm rules = new RulesForm();
             rules.ShowDialog();
         }
+
+
     }
 }

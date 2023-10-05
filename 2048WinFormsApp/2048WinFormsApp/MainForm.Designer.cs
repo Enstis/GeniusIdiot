@@ -113,6 +113,7 @@
             bestLabel.Size = new Size(17, 20);
             bestLabel.TabIndex = 4;
             bestLabel.Text = "0";
+            bestLabel.Click += bestLabel_Click;
             // 
             // MainForm
             // 

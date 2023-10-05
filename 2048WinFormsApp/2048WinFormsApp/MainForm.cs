@@ -20,6 +20,10 @@ namespace _2048WinFormsApp
         {
             EnterNameForm enterName = new EnterNameForm();
             enterName.ShowDialog();
+
+            var userList = UserResultRepository.GetUserResults();
+            bestLabel.Text = userList[^1].scoreUser.ToString();
+
             User = new User(enterName.enterNameTextBox.Text);
             InitMap();
             GenerateNumber();
@@ -303,6 +307,10 @@ namespace _2048WinFormsApp
             rules.ShowDialog();
         }
 
-
+        private void bestLabel_Click(object sender, EventArgs e)
+        {
+            
+            
+        }
     }
 }

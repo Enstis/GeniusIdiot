@@ -1,6 +1,6 @@
 ﻿namespace _2048WinFormsApp
 {
-    partial class EnterNameForm
+    partial class EnterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,18 +30,21 @@
         {
             enterNameTextBox = new TextBox();
             okButton = new Button();
+            mapSizeComboBox = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // enterNameTextBox
             // 
-            enterNameTextBox.Location = new Point(141, 158);
+            enterNameTextBox.Location = new Point(141, 75);
             enterNameTextBox.Name = "enterNameTextBox";
             enterNameTextBox.Size = new Size(141, 27);
             enterNameTextBox.TabIndex = 0;
             // 
             // okButton
             // 
-            okButton.Location = new Point(141, 245);
+            okButton.Location = new Point(141, 303);
             okButton.Name = "okButton";
             okButton.Size = new Size(141, 46);
             okButton.TabIndex = 1;
@@ -49,15 +52,48 @@
             okButton.UseVisualStyleBackColor = true;
             okButton.Click += okButton_Click;
             // 
-            // EnterNameForm
+            // mapSizeComboBox
+            // 
+            mapSizeComboBox.FormattingEnabled = true;
+            mapSizeComboBox.Items.AddRange(new object[] { "4х4", "5х5", "6х6" });
+            mapSizeComboBox.Location = new Point(141, 218);
+            mapSizeComboBox.Name = "mapSizeComboBox";
+            mapSizeComboBox.Size = new Size(141, 28);
+            mapSizeComboBox.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(126, 172);
+            label1.Name = "label1";
+            label1.Size = new Size(171, 20);
+            label1.TabIndex = 3;
+            label1.Text = "Выберете размер поля";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Salmon;
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(379, 197);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 4;
+            label2.Text = "label2";
+            // 
+            // EnterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(441, 378);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(mapSizeComboBox);
             Controls.Add(okButton);
             Controls.Add(enterNameTextBox);
-            Name = "EnterNameForm";
+            Name = "EnterForm";
             Text = "Введите имя";
+            Load += EnterNameForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -65,6 +101,9 @@
         #endregion
 
         public TextBox enterNameTextBox;
-        private Button okButton;
+        public Button okButton;
+        public ComboBox mapSizeComboBox;
+        private Label label1;
+        private Label label2;
     }
 }

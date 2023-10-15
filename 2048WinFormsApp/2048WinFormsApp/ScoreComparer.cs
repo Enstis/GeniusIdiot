@@ -4,7 +4,7 @@
     {
         public int Compare(User x, User y)
         {
-            return x.scoreUser.CompareTo(y.scoreUser);
+            return x.Score.CompareTo(y.Score);
         }
 
     }

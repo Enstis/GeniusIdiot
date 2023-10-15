@@ -37,6 +37,7 @@
             правилаToolStripMenuItem = new ToolStripMenuItem();
             label2 = new Label();
             bestLabel = new Label();
+            результатыToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { играToolStripMenuItem, правилаToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { играToolStripMenuItem, правилаToolStripMenuItem, результатыToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(369, 28);
@@ -78,14 +79,14 @@
             // рестартToolStripMenuItem
             // 
             рестартToolStripMenuItem.Name = "рестартToolStripMenuItem";
-            рестартToolStripMenuItem.Size = new Size(144, 26);
+            рестартToolStripMenuItem.Size = new Size(224, 26);
             рестартToolStripMenuItem.Text = "Рестарт";
             рестартToolStripMenuItem.Click += рестартToolStripMenuItem_Click;
             // 
             // выходToolStripMenuItem
             // 
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(144, 26);
+            выходToolStripMenuItem.Size = new Size(224, 26);
             выходToolStripMenuItem.Text = "Выход";
             выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
             // 
@@ -114,6 +115,13 @@
             bestLabel.TabIndex = 4;
             bestLabel.Text = "0";
             bestLabel.Click += bestLabel_Click;
+            // 
+            // результатыToolStripMenuItem
+            // 
+            результатыToolStripMenuItem.Name = "результатыToolStripMenuItem";
+            результатыToolStripMenuItem.Size = new Size(100, 24);
+            результатыToolStripMenuItem.Text = "Результаты";
+            результатыToolStripMenuItem.Click += результатыToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -147,5 +155,6 @@
         private ToolStripMenuItem правилаToolStripMenuItem;
         private Label label2;
         private Label bestLabel;
+        private ToolStripMenuItem результатыToolStripMenuItem;
     }
 }

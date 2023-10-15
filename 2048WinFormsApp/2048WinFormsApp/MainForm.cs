@@ -74,8 +74,7 @@ namespace _2048WinFormsApp
                         textNumber = "2";
                         
                     }
-                    //var color = changeColorLabel(textNumber);
-                    //labelsMap[indexRow, indexColumn].BackColor = color.BackColor;
+                    
 
                     if (textNumber != string.Empty)
                     {
@@ -89,14 +88,51 @@ namespace _2048WinFormsApp
                 }
             }
 
-            User.Score = int.Parse(scoreLabel.Text);
-            //UserResultRepository.Save(User);
-            //MessageBox.Show($"Вы проиграли. Ваш счет:{User.scoreUser}");
+            
+            
 
 
         }
 
-        
+        private bool Win()
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (labelsMap[i,j].Text == "2048")
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool EndGame() 
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (labelsMap[i, j].Text == "")
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (int i = 0; i < mapSize - 1; i++)
+            {
+                for (int j = 0; j < mapSize - 1; j++)
+                {
+                    if (labelsMap[i, j].Text == labelsMap[i, j + 1].Text || labelsMap[i, j].Text == labelsMap[i + 1, j].Text)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         private Label changeColorLabel (string numberLableString)
         {
             
@@ -148,235 +184,268 @@ namespace _2048WinFormsApp
         {
             if (e.KeyCode == Keys.Right)
             {
+                MoveRight();
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                MoveLeft();
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                MoveDown();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                MoveUp();
+            }
+
+            GenerateNumber();
+            ShowScore();
+
+            if (Win())
+            {
+                User.Score = int.Parse(scoreLabel.Text);
+                UserResultRepository.Save(User);
+                MessageBox.Show("Вы победили");
+            }
+            if (EndGame())
+            {
+                User.Score = int.Parse(scoreLabel.Text);
+                UserResultRepository.Save(User);
+                MessageBox.Show("Вы проиграли");
+            }
+        }
+
+        private void MoveUp()
+        {
+            for (int j = 0; j < mapSize; j++)
+            {
                 for (int i = 0; i < mapSize; i++)
                 {
-                    for (int j = mapSize - 1; j >= 0; j--)
+                    if (labelsMap[i, j].Text != string.Empty)
                     {
-                        if (labelsMap[i, j].Text != string.Empty)
+                        for (int k = i + 1; k < mapSize; k++)
                         {
-                            for (int k = j - 1; k >= 0; k--)
+                            if (labelsMap[i, j].Text != string.Empty)
                             {
-                                if (labelsMap[i, k].Text != string.Empty)
+                                if (labelsMap[i, j].Text == labelsMap[k, j].Text)
                                 {
-                                    if (labelsMap[i, j].Text == labelsMap[i, k].Text)
-                                    {
-                                        var number = int.Parse(labelsMap[i, j].Text);
-                                        score += number * 2;
+                                    var number = int.Parse(labelsMap[i, j].Text);
+                                    score += number * 2;
 
-                                        
-                                        labelsMap[i, j].Text = (number * 2).ToString();
-                                        var color = changeColorLabel(labelsMap[i, j].Text);
-                                        labelsMap[i, j].BackColor = color.BackColor;
+                                    labelsMap[i, j].Text = (number * 2).ToString();
+                                    var color = changeColorLabel(labelsMap[i, j].Text);
+                                    labelsMap[i, j].BackColor = color.BackColor;
 
-                                        labelsMap[i, k].Text = string.Empty;
-                                        color = changeColorLabel(labelsMap[i, k].Text);
-                                        labelsMap[i, k].BackColor = color.BackColor;
-                                    }
-                                    break;
+                                    labelsMap[k, j].Text = string.Empty;
+                                    color = changeColorLabel(labelsMap[k, j].Text);
+                                    labelsMap[k, j].BackColor = color.BackColor;
                                 }
+                                break;
                             }
                         }
                     }
                 }
+            }
 
+            for (int j = 0; j < mapSize; j++)
+            {
                 for (int i = 0; i < mapSize; i++)
                 {
-                    for (int j = mapSize - 1; j >= 0; j--)
+                    if (labelsMap[i, j].Text == string.Empty)
                     {
-                        if (labelsMap[i, j].Text == string.Empty)
+                        for (int k = i + 1; k < mapSize; k++)
                         {
-                            for (int k = j - 1; k >= 0; k--)
+                            if (labelsMap[k, j].Text != string.Empty)
                             {
-                                if (labelsMap[i, k].Text != string.Empty)
+                                labelsMap[i, j].Text = labelsMap[k, j].Text;
+                                var color = changeColorLabel(labelsMap[i, j].Text);
+                                labelsMap[i, j].BackColor = color.BackColor;
+
+                                labelsMap[k, j].Text = string.Empty;
+                                color = changeColorLabel(labelsMap[k, j].Text);
+                                labelsMap[k, j].BackColor = color.BackColor;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MoveDown()
+        {
+            for (int j = 0; j < mapSize; j++)
+            {
+                for (int i = mapSize - 1; i >= 0; i--)
+                {
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = i - 1; k >= 0; k--)
+                        {
+                            if (labelsMap[i, j].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[k, j].Text)
                                 {
-                                    labelsMap[i, j].Text = labelsMap[i, k].Text;
+                                    var number = int.Parse(labelsMap[i, j].Text);
+                                    score += number * 2;
+
+                                    labelsMap[i, j].Text = (number * 2).ToString();
+                                    var color = changeColorLabel(labelsMap[i, j].Text);
+                                    labelsMap[i, j].BackColor = color.BackColor;
+
+                                    labelsMap[k, j].Text = string.Empty;
+                                    color = changeColorLabel(labelsMap[k, j].Text);
+                                    labelsMap[k, j].BackColor = color.BackColor;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int j = 0; j < mapSize; j++)
+            {
+                for (int i = mapSize - 1; i >= 0; i--)
+                {
+                    if (labelsMap[i, j].Text == string.Empty)
+                    {
+                        for (int k = i - 1; k >= 0; k--)
+                        {
+                            if (labelsMap[k, j].Text != string.Empty)
+                            {
+                                labelsMap[i, j].Text = labelsMap[k, j].Text;
+                                var color = changeColorLabel(labelsMap[i, j].Text);
+                                labelsMap[i, j].BackColor = color.BackColor;
+
+                                labelsMap[k, j].Text = string.Empty;
+                                color = changeColorLabel(labelsMap[k, j].Text);
+                                labelsMap[k, j].BackColor = color.BackColor;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MoveLeft()
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = j + 1; k < mapSize; k++)
+                        {
+                            if (labelsMap[i, k].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[i, k].Text)
+                                {
+                                    var number = int.Parse(labelsMap[i, j].Text);
+                                    score += number * 2;
+
+
+                                    labelsMap[i, j].Text = (number * 2).ToString();
+                                    var color = changeColorLabel(labelsMap[i, j].Text);
+                                    labelsMap[i, j].BackColor = color.BackColor;
+
+
+                                    labelsMap[i, k].Text = string.Empty;
+                                    color = changeColorLabel(labelsMap[i, k].Text);
+                                    labelsMap[i, k].BackColor = color.BackColor;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (labelsMap[i, j].Text == string.Empty)
+                    {
+                        for (int k = j + 1; k < mapSize; k++)
+                        {
+                            if (labelsMap[i, k].Text != string.Empty)
+                            {
+                                labelsMap[i, j].Text = labelsMap[i, k].Text;
+                                var color = changeColorLabel(labelsMap[i, j].Text);
+                                labelsMap[i, j].BackColor = color.BackColor;
+
+                                labelsMap[i, k].Text = string.Empty;
+                                color = changeColorLabel(labelsMap[i, k].Text);
+                                labelsMap[i, k].BackColor = color.BackColor;
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MoveRight()
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = mapSize - 1; j >= 0; j--)
+                {
+                    if (labelsMap[i, j].Text != string.Empty)
+                    {
+                        for (int k = j - 1; k >= 0; k--)
+                        {
+                            if (labelsMap[i, k].Text != string.Empty)
+                            {
+                                if (labelsMap[i, j].Text == labelsMap[i, k].Text)
+                                {
+                                    var number = int.Parse(labelsMap[i, j].Text);
+                                    score += number * 2;
+
+
+                                    labelsMap[i, j].Text = (number * 2).ToString();
                                     var color = changeColorLabel(labelsMap[i, j].Text);
                                     labelsMap[i, j].BackColor = color.BackColor;
 
                                     labelsMap[i, k].Text = string.Empty;
                                     color = changeColorLabel(labelsMap[i, k].Text);
                                     labelsMap[i, k].BackColor = color.BackColor;
-                                    break;
                                 }
+                                break;
                             }
                         }
                     }
                 }
             }
-            if (e.KeyCode == Keys.Left)
+
+            for (int i = 0; i < mapSize; i++)
             {
-                for (int i = 0; i < mapSize; i++)
+                for (int j = mapSize - 1; j >= 0; j--)
                 {
-                    for (int j = 0; j < mapSize; j++)
+                    if (labelsMap[i, j].Text == string.Empty)
                     {
-                        if (labelsMap[i, j].Text != string.Empty)
+                        for (int k = j - 1; k >= 0; k--)
                         {
-                            for (int k = j + 1; k < mapSize; k++)
+                            if (labelsMap[i, k].Text != string.Empty)
                             {
-                                if (labelsMap[i, k].Text != string.Empty)
-                                {
-                                    if (labelsMap[i, j].Text == labelsMap[i, k].Text)
-                                    {
-                                        var number = int.Parse(labelsMap[i, j].Text);
-                                        score += number * 2;
+                                labelsMap[i, j].Text = labelsMap[i, k].Text;
+                                var color = changeColorLabel(labelsMap[i, j].Text);
+                                labelsMap[i, j].BackColor = color.BackColor;
 
-                                        
-                                        labelsMap[i, j].Text = (number * 2).ToString();
-                                        var color = changeColorLabel(labelsMap[i, j].Text);
-                                        labelsMap[i, j].BackColor = color.BackColor;
-
-
-                                        labelsMap[i, k].Text = string.Empty;
-                                        color = changeColorLabel(labelsMap[i,k].Text);
-                                        labelsMap[i, k].BackColor = color.BackColor;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                for (int i = 0; i < mapSize; i++)
-                {
-                    for (int j = 0; j < mapSize; j++)
-                    {
-                        if (labelsMap[i, j].Text == string.Empty)
-                        {
-                            for (int k = j + 1; k < mapSize; k++)
-                            {
-                                if (labelsMap[i, k].Text != string.Empty)
-                                {
-                                    labelsMap[i, j].Text = labelsMap[i, k].Text;
-                                    var color = changeColorLabel(labelsMap[i,j].Text);
-                                    labelsMap[i, j].BackColor = color.BackColor;
-
-                                    labelsMap[i, k].Text = string.Empty;
-                                    color = changeColorLabel(labelsMap[i, k].Text);
-                                    labelsMap[i, k].BackColor= color.BackColor;
-
-                                    break;
-                                }
+                                labelsMap[i, k].Text = string.Empty;
+                                color = changeColorLabel(labelsMap[i, k].Text);
+                                labelsMap[i, k].BackColor = color.BackColor;
+                                break;
                             }
                         }
                     }
                 }
             }
-            if (e.KeyCode == Keys.Down)
-            {
-                for (int j = 0; j < mapSize; j++)
-                {
-                    for (int i = mapSize - 1; i >= 0; i--)
-                    {
-                        if (labelsMap[i, j].Text != string.Empty)
-                        {
-                            for (int k = i - 1; k >= 0; k--)
-                            {
-                                if (labelsMap[i, j].Text != string.Empty)
-                                {
-                                    if (labelsMap[i, j].Text == labelsMap[k, j].Text)
-                                    {
-                                        var number = int.Parse(labelsMap[i, j].Text);
-                                        score += number * 2;
-
-                                        labelsMap[i, j].Text = (number * 2).ToString();
-                                        var color = changeColorLabel(labelsMap[i, j].Text);
-                                        labelsMap[i, j].BackColor = color.BackColor;
-
-                                        labelsMap[k, j].Text = string.Empty;
-                                        color = changeColorLabel(labelsMap[k, j].Text);
-                                        labelsMap[k, j].BackColor = color.BackColor;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                for (int j = 0; j < mapSize; j++)
-                {
-                    for (int i = mapSize - 1; i >= 0; i--)
-                    {
-                        if (labelsMap[i, j].Text == string.Empty)
-                        {
-                            for (int k = i - 1; k >= 0; k--)
-                            {
-                                if (labelsMap[k, j].Text != string.Empty)
-                                {
-                                    labelsMap[i, j].Text = labelsMap[k, j].Text;
-                                    var color = changeColorLabel(labelsMap[i, j].Text);
-                                    labelsMap[i, j].BackColor=color.BackColor;
-
-                                    labelsMap[k, j].Text = string.Empty;
-                                    color = changeColorLabel(labelsMap[k, j].Text);
-                                    labelsMap[k, j].BackColor = color.BackColor;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                for (int j = 0; j < mapSize; j++)
-                {
-                    for (int i = 0; i < mapSize; i++)
-                    {
-                        if (labelsMap[i, j].Text != string.Empty)
-                        {
-                            for (int k = i + 1; k < mapSize; k++)
-                            {
-                                if (labelsMap[i, j].Text != string.Empty)
-                                {
-                                    if (labelsMap[i, j].Text == labelsMap[k, j].Text)
-                                    {
-                                        var number = int.Parse(labelsMap[i, j].Text);
-                                        score += number * 2;
-
-                                        labelsMap[i, j].Text = (number * 2).ToString();
-                                        var color = changeColorLabel(labelsMap[i, j].Text);
-                                        labelsMap[i, j].BackColor = color.BackColor;
-
-                                        labelsMap[k, j].Text = string.Empty;
-                                        color = changeColorLabel(labelsMap[k, j].Text);
-                                        labelsMap[k, j].BackColor = color.BackColor;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                for (int j = 0; j < mapSize; j++)
-                {
-                    for (int i = 0; i < mapSize; i++)
-                    {
-                        if (labelsMap[i, j].Text == string.Empty)
-                        {
-                            for (int k = i + 1; k < mapSize; k++)
-                            {
-                                if (labelsMap[k, j].Text != string.Empty)
-                                {
-                                    labelsMap[i, j].Text = labelsMap[k, j].Text;
-                                    var color = changeColorLabel(labelsMap[i,j].Text);
-                                    labelsMap[i, j].BackColor = color.BackColor;
-
-                                    labelsMap[k, j].Text = string.Empty;
-                                    color = changeColorLabel(labelsMap[k, j].Text);
-                                    labelsMap[k, j].BackColor = color.BackColor;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            GenerateNumber();
-            ShowScore();
         }
 
         private void рестартToolStripMenuItem_Click(object sender, EventArgs e)

@@ -1,11 +1,20 @@
 using Newtonsoft.Json;
 using System.Linq.Expressions;
 using System.Web;
+using System.Windows.Forms;
 
 namespace _2048WinFormsApp
 {
     public partial class MainForm : Form
     {
+        private const int labelSize = 70;
+        private const int padding = 6;
+        private const int startX = 10;
+        private const int startY = 10;
+
+
+
+
         private string Name;
         private User User;
         private int mapSize;
@@ -41,6 +50,7 @@ namespace _2048WinFormsApp
         }
         private void InitMap()
         {
+            ClientSize = new Size(startX + (labelSize + padding) *mapSize, startY + (labelSize + padding) * mapSize);
             labelsMap = new Label[mapSize, mapSize];
             for (int i = 0; i < mapSize; i++)
             {
@@ -171,11 +181,11 @@ namespace _2048WinFormsApp
             var label = new Label();
             label.BackColor = Color.PeachPuff;
             label.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label.Size = new Size(70, 70);
+            label.Size = new Size(labelSize, labelSize);
             label.TabIndex = 0;
             label.TextAlign = ContentAlignment.MiddleCenter;
-            int x = 10 + indexColumn * 76;
-            int y = 70 + indexRow * 76;
+            int x = startX + indexColumn * (labelSize + padding);
+            int y = startY + indexRow * (labelSize + padding);
             label.Location = new Point(x, y);
             return label;
         }

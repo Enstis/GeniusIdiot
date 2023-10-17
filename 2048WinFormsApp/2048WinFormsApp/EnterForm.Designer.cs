@@ -32,7 +32,6 @@
             okButton = new Button();
             mapSizeComboBox = new ComboBox();
             label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // enterNameTextBox
@@ -70,23 +69,11 @@
             label1.TabIndex = 3;
             label1.Text = "Выберете размер поля";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Salmon;
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(379, 197);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 4;
-            label2.Text = "label2";
-            // 
             // EnterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(441, 378);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(mapSizeComboBox);
             Controls.Add(okButton);
@@ -104,6 +91,5 @@
         public Button okButton;
         public ComboBox mapSizeComboBox;
         private Label label1;
-        private Label label2;
     }
 }

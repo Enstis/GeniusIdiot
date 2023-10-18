@@ -62,6 +62,7 @@
             Name = "MainForm";
             Text = "Мячики";
             Load += MainForm_Load;
+            MouseDown += MainForm_MouseDown;
             ResumeLayout(false);
         }
 

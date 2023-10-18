@@ -14,11 +14,12 @@ namespace BallGamesWinFormsApp
 
         private void printBallButton_Click(object sender, EventArgs e)
         {
-            var graphics = CreateGraphics();
-            var brush = Brushes.Aqua;
+            var ball = new Ball(this);
+        }
 
-            var rectangle = new Rectangle(150, 150, 100, 100);
-            graphics.FillEllipse(brush, rectangle);
+        private void printRandomButton_Click(object sender, EventArgs e)
+        {
+            var randomPointBall = new RandomPointBall(this);
         }
     }
 }

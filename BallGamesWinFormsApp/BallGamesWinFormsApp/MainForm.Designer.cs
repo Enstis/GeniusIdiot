@@ -3,12 +3,12 @@
     partial class MainForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,52 +23,51 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            printBallButton = new Button();
-            printRandomButton = new Button();
+            button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
-            // printBallButton
+            // button1
             // 
-            printBallButton.Location = new Point(623, 12);
-            printBallButton.Name = "printBallButton";
-            printBallButton.Size = new Size(165, 29);
-            printBallButton.TabIndex = 0;
-            printBallButton.Text = " Рисовать мячик";
-            printBallButton.UseVisualStyleBackColor = true;
-            printBallButton.Click += printBallButton_Click;
+            button1.Location = new Point(528, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(223, 29);
+            button1.TabIndex = 0;
+            button1.Text = "Рисовать случайный мячик";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // printRandomButton
+            // button2
             // 
-            printRandomButton.Location = new Point(406, 12);
-            printRandomButton.Name = "printRandomButton";
-            printRandomButton.Size = new Size(211, 29);
-            printRandomButton.TabIndex = 1;
-            printRandomButton.Text = "Рисовать случайный мячик";
-            printRandomButton.UseVisualStyleBackColor = true;
-            printRandomButton.Click += printRandomButton_Click;
+            button2.Location = new Point(528, 47);
+            button2.Name = "button2";
+            button2.Size = new Size(223, 29);
+            button2.TabIndex = 1;
+            button2.Text = "Двигать мячик";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(printRandomButton);
-            Controls.Add(printBallButton);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Name = "MainForm";
             Text = "Мячики";
-            Load += MainForm_Load;
             MouseDown += MainForm_MouseDown;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button printBallButton;
-        private Button printRandomButton;
+        private Button button1;
+        private Button button2;
     }
 }

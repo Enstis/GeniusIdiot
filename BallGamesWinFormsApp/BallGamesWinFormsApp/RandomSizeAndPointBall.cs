@@ -1,13 +1,11 @@
 ﻿namespace BallGamesWinFormsApp
 {
-    public class RandomSizeAndPointBall : RandomPointBall
+    public class RandomSizeAndPointBall : RandomPoinBall
     {
         public RandomSizeAndPointBall(MainForm form) : base(form)
         {
-            size = random.Next(20, 70);
+           size = random.Next(10, 70);   
         }
     }
+    
 }
-
-
-

@@ -12,8 +12,8 @@ namespace BallGamesWinFormsApp
     public class Ball
     {
         protected  MainForm form;
-        private int vx = 1;
-        private int vy = 1;
+        protected int vx = 1;
+        protected int vy = 1;
         protected int x = 150;
         protected int y = 150;
         protected int size = 70;
@@ -29,9 +29,10 @@ namespace BallGamesWinFormsApp
             var brush = Brushes.Aqua;
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
+            graphics.DrawEllipse(Pens.Black, rectangle);
         }
 
-        private void Go()
+        protected void Go()
         {
             x += vx;
             y += vy;

@@ -28,17 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
+            timer = new System.Windows.Forms.Timer(components);
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(528, 12);
+            button1.Location = new Point(538, 12);
             button1.Name = "button1";
             button1.Size = new Size(223, 29);
             button1.TabIndex = 0;
-            button1.Text = "Рисовать случайный мячик";
+            button1.Text = "Двигать мячик";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -48,15 +52,42 @@
             button2.Name = "button2";
             button2.Size = new Size(223, 29);
             button2.TabIndex = 1;
-            button2.Text = "Двигать мячик";
+            button2.Text = "Рисовать случайный мячик";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(528, 100);
+            button3.Name = "button3";
+            button3.Size = new Size(223, 29);
+            button3.TabIndex = 2;
+            button3.Text = "Остановить все шарики";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // timer
+            // 
+            timer.Interval = 10;
+           
+            // 
+            // button4
+            // 
+            button4.Location = new Point(528, 158);
+            button4.Name = "button4";
+            button4.Size = new Size(223, 29);
+            button4.TabIndex = 3;
+            button4.Text = "Двигать много шариков";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "MainForm";
@@ -69,5 +100,8 @@
 
         private Button button1;
         private Button button2;
+        private Button button3;
+        private System.Windows.Forms.Timer timer;
+        private Button button4;
     }
 }

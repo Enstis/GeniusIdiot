@@ -13,7 +13,7 @@ namespace BallGamesWinFormsApp
     public partial class MainForm : Form
     {
         List<MoveBall> moveBalls;
-        //RandomSizeAndPointBall randomSizeAndPointBall;
+        RandomSizeAndPointBall randomSizeAndPointBall;
         PointBall pointBall;
 
         public MainForm()
@@ -29,11 +29,17 @@ namespace BallGamesWinFormsApp
 
         private void button3_Click(object sender, EventArgs e)
         {
+            var countCatchBall = 0;
             for (int i = 0; i < 10; i++)
             {
                 moveBalls[i].Stop();
+                var catchBall = moveBalls[i].CatchBall(moveBalls[i]);
+                if (catchBall) countCatchBall++;
+                
+
             }
 
+            MessageBox.Show($"Пойманых шаров: {countCatchBall}");
         }
 
         private void button4_Click(object sender, EventArgs e)

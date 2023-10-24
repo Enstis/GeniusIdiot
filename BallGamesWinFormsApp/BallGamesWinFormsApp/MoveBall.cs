@@ -17,8 +17,9 @@ namespace BallGamesWinFormsApp
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += Timer_Tick;
-            vx = random.Next(-5, 5);
-            vy = random.Next(-5, 5);
+
+            vx = random.Next(-10, 10);
+            vy = random.Next(-10, 10);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -26,14 +27,21 @@ namespace BallGamesWinFormsApp
             ChangeMoveBall();
             Move();
         }
+        public bool CatchBall (MoveBall moveBall)
+        {
+            var xCatchBall = moveBall.x >= 0 && moveBall.x + size <= form.ClientSize.Width;
+            var yCatchBall = moveBall.y >= 0 && moveBall.y + size <= form.ClientSize.Height;
+
+            return xCatchBall && yCatchBall;
+        }
 
         public void ChangeMoveBall ()
         {
-            if (x> form.ClientSize.Width || x < 0)
+            if (x > form.ClientSize.Width * 1.5 || x <= -form.ClientSize.Width * 1.5)
             {
                 vx *= -1;
             }
-            if(y > form.ClientSize.Height || y < 0)
+            if(y > form.ClientSize.Height * 1.5 || y <= -form.ClientSize.Height * 1.5)
             {
                 vy *= -1;
             }

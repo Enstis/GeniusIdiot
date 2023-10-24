@@ -21,15 +21,17 @@ namespace BallGamesWinFormsApp
         public Ball(MainForm form)
         {
             this.form = form;
+            this.form.BackColor = Color.White;
         }
 
         public void Show()
         {
             var graphics = form.CreateGraphics();
             var brush = Brushes.Aqua;
+            
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
-            graphics.DrawEllipse(Pens.Black, rectangle);
+           
         }
 
         protected void Go()

@@ -34,6 +34,7 @@
             button4 = new Button();
             button1 = new Button();
             button2 = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // button3
@@ -78,6 +79,11 @@
             button2.Text = "Закончить игру";
             button2.UseVisualStyleBackColor = true;
             // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -89,6 +95,7 @@
             Controls.Add(button3);
             Name = "MainForm";
             Text = "Мячики";
+            Load += MainForm_Load;
             MouseDown += MainForm_MouseDown;
             ResumeLayout(false);
         }
@@ -99,5 +106,6 @@
         private Button button4;
         private Button button1;
         private Button button2;
+        private System.Windows.Forms.Timer timer1;
     }
 }

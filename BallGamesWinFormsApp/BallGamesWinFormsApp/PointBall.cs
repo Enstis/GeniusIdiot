@@ -7,6 +7,7 @@
             this.x = x - size/2;
             this.y = y - size/ 2;
         }
+        
     }
     
 }

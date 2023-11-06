@@ -10,7 +10,7 @@ namespace CatchBallWinFormsApp
     public class MoveBallRandom : RandomSizeAndPointBall
     {
         private Timer timer;
-        public MoveBallRandom(MainForm form) : base(form)
+        public MoveBallRandom(Form form) : base(form)
         {
             vx = random.Next(-10, 11);
             vy = random.Next(-10, 11);
@@ -27,8 +27,11 @@ namespace CatchBallWinFormsApp
             Move();
         }
 
-       
-        
+        public bool IsMoveable()
+        {
+            return timer.Enabled;
+        }
+
     }
 
 }

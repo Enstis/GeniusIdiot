@@ -1,15 +1,32 @@
-using Balls.Common;
-namespace CatchBallWinFormsApp
+Ôªøusing Ball.CommonNet;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CatchBallWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-
+        
         List<MoveBallRandom> moveBallsRandom = new List<MoveBallRandom>();
         int countCatchBall = 0;
         public MainForm()
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            StopButton.Enabled = false;
+            clearButton.Enabled = false;
+        }
+
         private void startButton_Click(object sender, EventArgs e)
         {
             startButton.Enabled = false;
@@ -21,6 +38,7 @@ namespace CatchBallWinFormsApp
                 moveBallsRandom.Add(moveBall);
                 moveBall.Start();
             }
+            
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -32,13 +50,7 @@ namespace CatchBallWinFormsApp
                 moveBallsRandom[i].Stop();
                 if (moveBallsRandom[i].CatchBall(moveBallsRandom[i])) countCatchBall++;
             }
-            MessageBox.Show($"œÓÈÏ‡ÌÓ Ïˇ˜ÂÈ: {countCatchBall}");
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            StopButton.Enabled = false;
-            clearButton.Enabled = false;
+            MessageBox.Show($"–ü–æ–π–º–∞–Ω–æ –º—è—á–µ–π: {countCatchBall}");
         }
 
         private void clearButton_Click(object sender, EventArgs e)

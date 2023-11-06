@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
-namespace CatchBallWinFormsApp
+
+namespace Ball.Common
 {
     public class Ball
     {
-        private MainForm form;
+        private Form form;
         protected int x = 150;
         protected int y = 150;
         protected int size = 70;
         protected int vx = 1;
         protected int vy = 1;
 
-        public Ball(MainForm form)
+        public Ball(Form form)
         {
             this.form = form;
             this.form.BackColor = Color.White;
@@ -52,6 +49,15 @@ namespace CatchBallWinFormsApp
             var brush = Brushes.White;
             var rectangle = new Rectangle(x, y, size, size);
             graphics.FillEllipse(brush, rectangle);
+        }
+        public bool Contains(int pointX, int pointY)
+        {
+            var radius = size / 2;
+            var centerX = x + radius;
+            var centerY = y + radius;
+
+            return (centerX - pointX) * (centerX - pointX) + (centerY - pointY) * (centerY - pointY) <= radius * radius;
+           
         }
     }
 }

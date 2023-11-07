@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchBallWindowsFormsApp", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balls.CommonNet", "Balls.CommonNet\Balls.CommonNet.csproj", "{483FA6A4-8528-444D-BEA2-1FCD460B3B1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchBallWindowsFormsApp2", "CatchBallWindowsFormsApp2\CatchBallWindowsFormsApp2.csproj", "{71E8D8D4-981D-4F49-8A11-C03C7358A323}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{483FA6A4-8528-444D-BEA2-1FCD460B3B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483FA6A4-8528-444D-BEA2-1FCD460B3B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483FA6A4-8528-444D-BEA2-1FCD460B3B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E8D8D4-981D-4F49-8A11-C03C7358A323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E8D8D4-981D-4F49-8A11-C03C7358A323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E8D8D4-981D-4F49-8A11-C03C7358A323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E8D8D4-981D-4F49-8A11-C03C7358A323}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,7 +48,7 @@ namespace CatchBallWindowsFormsApp
             for (int i = 0; i < 10; i++)
             {
                 moveBallsRandom[i].Stop();
-                if (moveBallsRandom[i].CatchBall(moveBallsRandom[i])) countCatchBall++;
+                if (moveBallsRandom[i].CatchBall()) countCatchBall++;
             }
             MessageBox.Show($"Поймано мячей: {countCatchBall}");
         }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ball.CommonNet
@@ -13,23 +7,57 @@ namespace Ball.CommonNet
     public class Ball
     {
         private Form form;
-        protected int x = 150;
-        protected int y = 150;
-        protected int size = 70;
+        protected int centerX = 10;
+        protected int centerY = 10;
+        protected int radius = 25;
+
         protected int vx = 1;
         protected int vy = 1;
+
+        private Timer timer;
 
         public Ball(Form form)
         {
             this.form = form;
             this.form.BackColor = Color.White;
+            timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += Timer_Tick;
         }
-        public bool CatchBall(MoveBallRandom moveBallRandom)
-        {
-            bool positionX = moveBallRandom.x > 0 && moveBallRandom.x + size < form.ClientSize.Width;
-            bool positionY = moveBallRandom.y > 0 && moveBallRandom.y + size < form.ClientSize.Height;
 
-            return positionX && positionY;
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Move();
+        }
+        public bool IsMoveable()
+        {
+            return timer.Enabled;
+        }
+        public void Start() => timer.Start();
+        public void Stop() => timer.Stop();
+
+        public bool CatchBall()
+        {
+            bool positionX = centerX > 0 && centerX + radius < form.ClientSize.Width;
+            bool positionY = centerY > 0 && centerY + radius < form.ClientSize.Height;
+
+            return centerX >= LeftSide() && centerX <= RightSide() && centerY >= TopSide() && centerY <= DownSide();
+        }
+        public int LeftSide()
+        {
+            return radius;
+        }
+        public int RightSide()
+        {
+            return form.ClientSize.Width - radius;
+        }
+        public int TopSide()
+        {
+            return radius;
+        }
+        public int DownSide()
+        {
+            return form.ClientSize.Height - radius;
         }
         public void Move()
         {
@@ -39,31 +67,31 @@ namespace Ball.CommonNet
         }
         public void Show()
         {
-            var graphics = form.CreateGraphics();
             var brush = Brushes.Aqua;
-            var rectangle = new Rectangle(x, y, size, size);
-            graphics.FillEllipse(brush, rectangle);
+            Draw(brush);
         }
         private void Go()
         {
-            x += vx;
-            y += vy;
+            centerX += vx;
+            centerY += vy;
         }
         public void Clear()
         {
-            var graphics = form.CreateGraphics();
             var brush = Brushes.White;
-            var rectangle = new Rectangle(x, y, size, size);
-            graphics.FillEllipse(brush, rectangle);
+            Draw(brush);
         }
         public bool Contains(int pointX, int pointY)
         {
-            var radius = size / 2;
-            var centerX = x + radius;
-            var centerY = y + radius;
+            var dx = pointX - centerX;
+            var dy = pointY - centerY;
 
-            return (centerX - pointX) * (centerX - pointX) + (centerY - pointY) * (centerY - pointY) <= radius * radius;
-
+            return dx * dx + dy * dy <= radius * radius;
+        }
+        private void Draw(Brush brush)
+        {
+            var graphics = form.CreateGraphics();
+            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+            graphics.FillEllipse(brush, rectangle);
         }
     }
 }

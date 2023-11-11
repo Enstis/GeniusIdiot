@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Ball.CommonNet
 {
-    public class Ball
+    public class Balll
     {
         private Form form;
         protected int centerX = 10;
@@ -16,7 +16,7 @@ namespace Ball.CommonNet
 
         private Timer timer;
 
-        public Ball(Form form)
+        public Balll(Form form)
         {
             this.form = form;
             this.form.BackColor = Color.White;
@@ -70,7 +70,7 @@ namespace Ball.CommonNet
             var brush = Brushes.Aqua;
             Draw(brush);
         }
-        private void Go()
+        protected virtual void Go()
         {
             centerX += vx;
             centerY += vy;

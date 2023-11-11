@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Ball.CommonNet
 {
-    public class RandomPointBall : Ball
+    public class RandomPointBall : Balll
     {
         public static Random random = new Random();
         public RandomPointBall(Form form) : base(form)

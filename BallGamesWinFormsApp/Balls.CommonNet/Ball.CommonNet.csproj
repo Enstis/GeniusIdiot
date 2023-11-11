@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Balls.cs" />
+    <Compile Include="Balll.cs" />
     <Compile Include="MoveBallRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomPointBall.cs" />

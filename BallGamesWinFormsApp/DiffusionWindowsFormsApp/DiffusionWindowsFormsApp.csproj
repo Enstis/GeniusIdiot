@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A281DFBB-1EB6-4093-861A-15FE7F45D9DC}</ProjectGuid>
+    <ProjectGuid>{B95010F5-8534-4302-9221-10C1B53239DC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BilliardBallWindowsFormsApp</RootNamespace>
-    <AssemblyName>BilliardBallWindowsFormsApp</AssemblyName>
+    <RootNamespace>DiffusionWindowsFormsApp</RootNamespace>
+    <AssemblyName>DiffusionWindowsFormsApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,16 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BilliardForm.cs">
+    <Compile Include="DiffusionBallBlue.cs" />
+    <Compile Include="DiffusionBallGreen.cs" />
+    <Compile Include="DiffusionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BilliardForm.Designer.cs">
-      <DependentUpon>BilliardForm.cs</DependentUpon>
+    <Compile Include="DiffusionForm.Designer.cs">
+      <DependentUpon>DiffusionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BilliardForm.resx">
-      <DependentUpon>BilliardForm.cs</DependentUpon>
+    <EmbeddedResource Include="DiffusionForm.resx">
+      <DependentUpon>DiffusionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

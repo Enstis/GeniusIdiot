@@ -14,7 +14,7 @@ namespace CatchBallWindowsFormsApp2
 {
     public partial class MainFormClick : Form
     {
-        List<MoveBallRandom> moveBallsRandom = new List<MoveBallRandom>();
+        List<MoveBallRandom> moveBallsRandom;
         private int countCatchBall = 0;
         public MainFormClick()
         {

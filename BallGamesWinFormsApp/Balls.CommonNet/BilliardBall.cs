@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BilliardBallWindowsFormsApp
+namespace Ball.CommonNet
 {
     public class BilliardBall : MoveBallRandom
     {
         public event EventHandler<HitEventArgs> OnHited;
         public BilliardBall(Form form) : base(form)
         {
-
+            radius = 10;
         }
 
         protected override void Go()
@@ -24,7 +24,7 @@ namespace BilliardBallWindowsFormsApp
                 vx = -vx;
                 OnHited.Invoke(this, new HitEventArgs(Side.Left));
             }
-            if(centerX >= RightSide())
+            if (centerX >= RightSide())
             {
                 vx = -vx;
                 OnHited.Invoke(this, new HitEventArgs(Side.Right));

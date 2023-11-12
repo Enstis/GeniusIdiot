@@ -1,4 +1,4 @@
-﻿namespace BilliardBallWindowsFormsApp
+﻿namespace Ball.CommonNet
 {
     public class HitEventArgs
     {

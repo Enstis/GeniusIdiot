@@ -6,7 +6,7 @@ namespace Ball.CommonNet
 {
     public class Balll
     {
-        private Form form;
+        protected Form form;
         protected int centerX = 10;
         protected int centerY = 10;
         protected int radius = 25;
@@ -59,13 +59,23 @@ namespace Ball.CommonNet
         {
             return form.ClientSize.Height - radius;
         }
+
+        public int CenterRightSide()
+        {
+            return form.ClientSize.Width / 2 - radius;
+        }
+        public int CenterLeftSide()
+        {
+            return radius + form.ClientSize.Width / 2;
+        }
+        
         public void Move()
         {
             Clear();
             Go();
             Show();
         }
-        public void Show()
+        public virtual void Show()
         {
             var brush = Brushes.Aqua;
             Draw(brush);
@@ -87,10 +97,11 @@ namespace Ball.CommonNet
 
             return dx * dx + dy * dy <= radius * radius;
         }
-        private void Draw(Brush brush)
+        protected virtual void Draw(Brush brush)
         {
             var graphics = form.CreateGraphics();
             var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+            
             graphics.FillEllipse(brush, rectangle);
         }
     }

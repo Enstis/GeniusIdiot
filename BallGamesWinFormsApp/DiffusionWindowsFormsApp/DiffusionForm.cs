@@ -36,7 +36,8 @@ namespace DiffusionWindowsFormsApp
                 var blueBall = new DiffusionBallBlue(this);
                 blueBall.Show();
                 blueBall.OnHited += BlueBall_OnHited;
-                blueBalls.Add(blueBall);  
+                blueBalls.Add(blueBall);
+                
             }
             
         }
@@ -57,6 +58,16 @@ namespace DiffusionWindowsFormsApp
                 case Side.Down:
                     downSideBlueLabel.Text = (int.Parse(downSideBlueLabel.Text) + 1).ToString();
                     break;
+            }
+            bool countGreen = int.Parse(leftSideGreenLabel.Text) > 20 && int.Parse(topSideGreenLabel.Text) > 20 && int.Parse(rightSideGreenLabel.Text) > 20 && int.Parse(downSideGreenLabel.Text) > 20;
+            bool countBlue = int.Parse(leftSideBlueLabel.Text) > 20 && int.Parse(topSideBlueLabel.Text) > 20 && int.Parse(rightSideBlueLabel.Text) > 20 && int.Parse(downSideBlueLabel.Text) > 20;
+            if (countBlue && countGreen)
+            {
+                for (int i = 0; i < greenBalls.Count; i++)
+                {
+                    greenBalls[i].Stop();
+                    blueBalls[i].Stop();
+                }
             }
         }
 
@@ -81,26 +92,35 @@ namespace DiffusionWindowsFormsApp
 
 
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            Graphics dc = e.Graphics;
-            Pen pen = new Pen(Color.Red, 5);
-            pen.DashStyle = DashStyle.Dash;
-            int x1 = ClientSize.Width / 2;
-            int y1 = 0;
-            int x2 = x1;
-            int y2 = ClientSize.Height;
-            dc.DrawLine(pen, x1, 0, x2, y2);
-        }
+        //protected override void OnPaint(PaintEventArgs e) 
+        //{
+        //    base.OnPaint(e);
+        //    Graphics dc = e.Graphics;
+        //    Pen pen = new Pen(Color.Red, 5);
+        //    pen.DashStyle = DashStyle.Dash;
+        //    int x1 = ClientSize.Width / 2;
+        //    int y1 = 0;
+        //    int x2 = x1;
+        //    int y2 = ClientSize.Height;
+        //    dc.DrawLine(pen, x1, 0, x2, y2);
+        //}
 
         private void DiffusionForm_MouseDown(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < greenBalls.Count; i++)
             {
-                greenBalls[i].Start();
-                blueBalls[i].Start();
+                if (greenBalls[i].timer.Enabled == false || blueBalls[i].timer.Enabled == false)
+                {
+                    greenBalls[i].Start();
+                    blueBalls[i].Start();
+                }
+                else
+                {
+                    greenBalls[i].Stop();
+                    blueBalls[i].Stop();
+                }
             }
+                
         }
     }
 }

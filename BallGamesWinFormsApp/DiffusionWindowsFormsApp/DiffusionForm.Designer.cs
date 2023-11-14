@@ -98,7 +98,7 @@
             this.topSideBlueLabel.AutoSize = true;
             this.topSideBlueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.topSideBlueLabel.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.topSideBlueLabel.Location = new System.Drawing.Point(388, 9);
+            this.topSideBlueLabel.Location = new System.Drawing.Point(410, 9);
             this.topSideBlueLabel.Name = "topSideBlueLabel";
             this.topSideBlueLabel.Size = new System.Drawing.Size(17, 18);
             this.topSideBlueLabel.TabIndex = 5;
@@ -120,7 +120,7 @@
             this.downSideBlueLabel.AutoSize = true;
             this.downSideBlueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.downSideBlueLabel.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.downSideBlueLabel.Location = new System.Drawing.Point(388, 423);
+            this.downSideBlueLabel.Location = new System.Drawing.Point(410, 423);
             this.downSideBlueLabel.Name = "downSideBlueLabel";
             this.downSideBlueLabel.Size = new System.Drawing.Size(17, 18);
             this.downSideBlueLabel.TabIndex = 7;

@@ -14,7 +14,7 @@ namespace Ball.CommonNet
         protected int vx = 1;
         protected int vy = 1;
 
-        private Timer timer;
+        public Timer timer;
 
         public Balll(Form form)
         {
@@ -79,6 +79,8 @@ namespace Ball.CommonNet
         {
             var brush = Brushes.Aqua;
             Draw(brush);
+
+
         }
         protected virtual void Go()
         {

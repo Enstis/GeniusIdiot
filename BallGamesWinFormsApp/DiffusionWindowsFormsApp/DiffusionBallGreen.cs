@@ -24,6 +24,14 @@ namespace DiffusionWindowsFormsApp
             var brush = Brushes.Green;
             
             Draw(brush);
+            var  graphics = form.CreateGraphics();
+            Pen pen = new Pen(Color.Red, 5);
+            pen.DashStyle = DashStyle.Dash;
+            int x1 = form.ClientSize.Width / 2;
+            int y1 = 0;
+            int x2 = x1;
+            int y2 = form.ClientSize.Height;
+            graphics.DrawLine(pen, x1, 0, x2, y2);
         }
         
 

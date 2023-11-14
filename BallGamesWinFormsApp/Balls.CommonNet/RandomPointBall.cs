@@ -18,6 +18,11 @@ namespace Ball.CommonNet
             centerX = random.Next(LeftSide(), RightSide());
             centerY = random.Next(TopSide(), DownSide());
         }
+        public RandomPointBall(Form form, Brush brush) : base(form, brush)
+        {
+            centerX = random.Next(LeftSide(), RightSide());
+            centerY = random.Next(TopSide(), DownSide());
+        }
     }
     
 }

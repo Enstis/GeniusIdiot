@@ -1,6 +1,7 @@
 ﻿using Ball.CommonNet;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ namespace Ball.CommonNet
     {
         public event EventHandler<HitEventArgs> OnHited;
         public BilliardBall(Form form) : base(form)
+        {
+            radius = 10;
+        }
+        public BilliardBall(Form form, Brush brush) : base(form, brush)
         {
             radius = 10;
         }

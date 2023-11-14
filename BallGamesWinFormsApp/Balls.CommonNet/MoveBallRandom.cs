@@ -18,7 +18,13 @@ namespace Ball.CommonNet
             vx = random.Next(-5, 5);
             vy = random.Next(-5, 5);
             
-        } 
+        }
+        public MoveBallRandom(Form form, Brush brush) : base(form, brush)
+        {
+            vx = random.Next(-5, 5);
+            vy = random.Next(-5, 5);
+
+        }
     }
     
 }

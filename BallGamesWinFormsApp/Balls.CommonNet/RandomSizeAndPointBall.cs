@@ -17,6 +17,10 @@ namespace Ball.CommonNet
         {
             radius = random.Next(10, 40);
         }
+        public RandomSizeAndPointBall(Form form, Brush brush) : base(form, brush)
+        {
+            radius = random.Next(10, 40);
+        }
     }
     
 }

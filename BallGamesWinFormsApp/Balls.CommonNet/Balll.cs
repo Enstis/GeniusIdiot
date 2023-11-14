@@ -11,6 +11,8 @@ namespace Ball.CommonNet
         protected int centerY = 10;
         protected int radius = 25;
 
+        protected Brush brush = Brushes.Black;
+
         protected int vx = 1;
         protected int vy = 1;
 
@@ -23,6 +25,15 @@ namespace Ball.CommonNet
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += Timer_Tick;
+        }
+        public Balll(Form form, Brush brush)
+        {
+            this.form = form;
+            this.form.BackColor = Color.White;
+            timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += Timer_Tick;
+            this.brush = brush;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

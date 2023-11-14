@@ -14,8 +14,7 @@ namespace DiffusionWindowsFormsApp
 {
     public partial class DiffusionForm : Form
     {
-        List<DiffusionBallBlue> blueBalls;
-        List<DiffusionBallGreen> greenBalls;
+        List <BilliardBall> balls;
         public DiffusionForm()
         {
             InitializeComponent();
@@ -23,21 +22,9 @@ namespace DiffusionWindowsFormsApp
 
         private void DiffusionForm_Load(object sender, EventArgs e)
         {
-            blueBalls = new List<DiffusionBallBlue>();
-            greenBalls = new List<DiffusionBallGreen>();
-
             for (int i = 0; i < 10; i++)
             {
-                var greenBall = new DiffusionBallGreen(this);
-                greenBall.Show();
-                greenBall.OnHited += GreenBall_OnHited;
-                greenBalls.Add(greenBall);
-                
-                var blueBall = new DiffusionBallBlue(this);
-                blueBall.Show();
-                blueBall.OnHited += BlueBall_OnHited;
-                blueBalls.Add(blueBall);
-                
+                balls = new BilliardBall(this);
             }
             
         }
@@ -59,16 +46,7 @@ namespace DiffusionWindowsFormsApp
                     downSideBlueLabel.Text = (int.Parse(downSideBlueLabel.Text) + 1).ToString();
                     break;
             }
-            bool countGreen = int.Parse(leftSideGreenLabel.Text) > 20 && int.Parse(topSideGreenLabel.Text) > 20 && int.Parse(rightSideGreenLabel.Text) > 20 && int.Parse(downSideGreenLabel.Text) > 20;
-            bool countBlue = int.Parse(leftSideBlueLabel.Text) > 20 && int.Parse(topSideBlueLabel.Text) > 20 && int.Parse(rightSideBlueLabel.Text) > 20 && int.Parse(downSideBlueLabel.Text) > 20;
-            if (countBlue && countGreen)
-            {
-                for (int i = 0; i < greenBalls.Count; i++)
-                {
-                    greenBalls[i].Stop();
-                    blueBalls[i].Stop();
-                }
-            }
+           
         }
 
         private void GreenBall_OnHited(object sender, HitEventArgs e)
@@ -107,19 +85,7 @@ namespace DiffusionWindowsFormsApp
 
         private void DiffusionForm_MouseDown(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < greenBalls.Count; i++)
-            {
-                if (greenBalls[i].timer.Enabled == false || blueBalls[i].timer.Enabled == false)
-                {
-                    greenBalls[i].Start();
-                    blueBalls[i].Start();
-                }
-                else
-                {
-                    greenBalls[i].Stop();
-                    blueBalls[i].Stop();
-                }
-            }
+            
                 
         }
     }

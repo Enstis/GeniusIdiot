@@ -46,8 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiffusionBallBlue.cs" />
-    <Compile Include="DiffusionBallGreen.cs" />
     <Compile Include="DiffusionForm.cs">
       <SubType>Form</SubType>
     </Compile>

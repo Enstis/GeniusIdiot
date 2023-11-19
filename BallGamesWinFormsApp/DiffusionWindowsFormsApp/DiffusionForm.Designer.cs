@@ -65,7 +65,7 @@
             this.rightSideGreenLabel.AutoSize = true;
             this.rightSideGreenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rightSideGreenLabel.ForeColor = System.Drawing.Color.ForestGreen;
-            this.rightSideGreenLabel.Location = new System.Drawing.Point(780, 159);
+            this.rightSideGreenLabel.Location = new System.Drawing.Point(771, 159);
             this.rightSideGreenLabel.Name = "rightSideGreenLabel";
             this.rightSideGreenLabel.Size = new System.Drawing.Size(17, 18);
             this.rightSideGreenLabel.TabIndex = 2;
@@ -109,7 +109,7 @@
             this.rightSideBlueLabel.AutoSize = true;
             this.rightSideBlueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rightSideBlueLabel.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.rightSideBlueLabel.Location = new System.Drawing.Point(780, 210);
+            this.rightSideBlueLabel.Location = new System.Drawing.Point(771, 210);
             this.rightSideBlueLabel.Name = "rightSideBlueLabel";
             this.rightSideBlueLabel.Size = new System.Drawing.Size(17, 18);
             this.rightSideBlueLabel.TabIndex = 6;

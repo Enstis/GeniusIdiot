@@ -13,16 +13,16 @@ namespace Ball.CommonNet
     
     public class MoveBallRandom : RandomSizeAndPointBall
     {
-        public MoveBallRandom(Form form) : base(form)
-        {
-            vx = random.Next(-5, 5);
-            vy = random.Next(-5, 5);
+        //public MoveBallRandom(Form form) : base(form)
+        //{
+        //    vx = random.Next(-5, 5);
+        //    vy = random.Next(-5, 5);
             
-        }
+        //}
         public MoveBallRandom(Form form, Brush brush) : base(form, brush)
         {
-            vx = random.Next(-5, 5);
-            vy = random.Next(-5, 5);
+            vx = (float)random.NextDouble()*10 - 5;
+            vy = (float)random.NextDouble() * 10 - 5;
 
         }
     }

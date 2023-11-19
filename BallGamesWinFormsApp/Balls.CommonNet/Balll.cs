@@ -7,14 +7,14 @@ namespace Ball.CommonNet
     public class Balll
     {
         protected Form form;
-        protected int centerX = 10;
-        protected int centerY = 10;
+        protected float centerX = 10;
+        protected float centerY = 10;
         protected int radius = 25;
 
         protected Brush brush = Brushes.Black;
-
-        protected int vx = 1;
-        protected int vy = 1;
+        
+        protected float vx = 1;
+        protected float vy = 1;
 
         public Timer timer;
 
@@ -30,10 +30,16 @@ namespace Ball.CommonNet
         {
             this.form = form;
             this.form.BackColor = Color.White;
+
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += Timer_Tick;
             this.brush = brush;
+        }
+
+        public Brush GetBrush()
+        {
+            return brush;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -88,10 +94,7 @@ namespace Ball.CommonNet
         }
         public virtual void Show()
         {
-            var brush = Brushes.Aqua;
             Draw(brush);
-
-
         }
         protected virtual void Go()
         {
@@ -113,8 +116,7 @@ namespace Ball.CommonNet
         protected virtual void Draw(Brush brush)
         {
             var graphics = form.CreateGraphics();
-            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
-            
+            var rectangle = new Rectangle((int)centerX - radius, (int)centerY - radius, 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
         }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,20 +14,78 @@ namespace DiffusionWindowsFormsApp
 {
     public partial class DiffusionForm : Form
     {
-        List <BilliardBall> balls;
+        private Timer timer = new Timer();
+        List<BilliardBall> balls = new List<BilliardBall>();
+        int ballsCount = 20;
         public DiffusionForm()
         {
             InitializeComponent();
+            timer.Interval = 15;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            int leftOfCenterCountGreen = 0;
+            int rightOfCenterCountGreen = 0;
+
+            int leftOfCenterCountBlue = 0;
+            int rightOfCenterCountBlue = 0;
+
+            foreach (var ball in balls)
+            {
+                if (ball.LeftOfCenter())
+                {
+                    if (ball.GetBrush() == Brushes.Green)
+                    {
+                        leftOfCenterCountGreen++;
+                    }
+                    else leftOfCenterCountBlue++;
+
+                }
+                if (ball.RightOfCenter())
+                {
+                    if (ball.GetBrush() == Brushes.Green)
+                    {
+                        rightOfCenterCountGreen++;
+                    }
+                    else rightOfCenterCountBlue++;
+                }
+            }
+
+            if (leftOfCenterCountGreen == rightOfCenterCountGreen && leftOfCenterCountBlue == rightOfCenterCountBlue 
+                && leftOfCenterCountGreen + rightOfCenterCountGreen + leftOfCenterCountBlue + rightOfCenterCountBlue == ballsCount)
+            {
+                foreach (var ball in balls)
+                {
+                    ball.Stop();
+                }
+            }
+
         }
 
         private void DiffusionForm_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+           
+            for (int i = 0; i < ballsCount / 2; i++)
             {
-                balls = new BilliardBall(this);
+               
+                var ball = new BilliardBall(this, Brushes.Green);
+                ball.OnHited += GreenBall_OnHited;
+                ball.Start();
+                balls.Add(ball);
+
+                ball = new BilliardBall(this, Brushes.Blue);
+                ball.OnHited += BlueBall_OnHited;
+                ball.Start();
+                balls.Add(ball);
+                ball.Show();
             }
-            
+
         }
+
+       
 
         private void BlueBall_OnHited(object sender, HitEventArgs e)
         {
@@ -46,7 +104,7 @@ namespace DiffusionWindowsFormsApp
                     downSideBlueLabel.Text = (int.Parse(downSideBlueLabel.Text) + 1).ToString();
                     break;
             }
-           
+
         }
 
         private void GreenBall_OnHited(object sender, HitEventArgs e)
@@ -68,7 +126,11 @@ namespace DiffusionWindowsFormsApp
             }
         }
 
-
+        public void ShowVerticalCenterLine()
+        {
+            var graphics = CreateGraphics();
+            graphics.DrawLine(Pens.Red, ClientSize.Width / 2, 0, ClientSize.Width / 2, ClientSize.Height);
+        }
 
         //protected override void OnPaint(PaintEventArgs e) 
         //{
@@ -85,8 +147,8 @@ namespace DiffusionWindowsFormsApp
 
         private void DiffusionForm_MouseDown(object sender, MouseEventArgs e)
         {
-            
-                
+
+
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BilliardBallWindowsFormsApp
         {
             for (int i = 0; i < 10; i++)
             {
-                var ball = new BilliardBall(this);
+                var ball = new BilliardBall(this, Brushes.Black);
                 ball.OnHited += Ball_OnHited;
                 ball.Start(); 
             }

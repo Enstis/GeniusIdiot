@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilliardBallWindowsFormsApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffusionWindowsFormsApp", "DiffusionWindowsFormsApp\DiffusionWindowsFormsApp.csproj", "{B95010F5-8534-4302-9221-10C1B53239DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalutWindowsFormsApp", "SalutWindowsFormsApp\SalutWindowsFormsApp.csproj", "{669232B3-CB21-4FBE-99A8-1A3BFADA84DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B95010F5-8534-4302-9221-10C1B53239DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95010F5-8534-4302-9221-10C1B53239DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95010F5-8534-4302-9221-10C1B53239DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669232B3-CB21-4FBE-99A8-1A3BFADA84DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669232B3-CB21-4FBE-99A8-1A3BFADA84DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669232B3-CB21-4FBE-99A8-1A3BFADA84DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669232B3-CB21-4FBE-99A8-1A3BFADA84DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -28,5 +28,10 @@ namespace SalutWindowsFormsApp
                 salut.Start();
             }
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

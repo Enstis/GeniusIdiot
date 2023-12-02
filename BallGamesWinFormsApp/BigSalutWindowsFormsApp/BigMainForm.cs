@@ -11,8 +11,10 @@ using Ball.CommonNet;
 
 namespace BigSalutWindowsFormsApp
 {
+      
     public partial class BigMainForm : Form
     {
+        private Random rnd = new Random();
         private Timer timer = new Timer();
         private Random rand = new Random();
         public BigMainForm()
@@ -25,13 +27,13 @@ namespace BigSalutWindowsFormsApp
             timer.Interval = rand.Next(1000, 10000);
             timer.Tick += Timer_Tick;
             timer.Start();
-            
-
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
             var ball = new BigSalut(this);
+            ball.ChangeColorBrush();
             ball.Start();
         }
+
     }
 }

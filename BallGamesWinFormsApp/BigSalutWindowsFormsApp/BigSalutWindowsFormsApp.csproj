@@ -85,6 +85,10 @@
       <Project>{483fa6a4-8528-444d-bea2-1fcd460b3b1d}</Project>
       <Name>Ball.CommonNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SalutWindowsFormsApp\SalutWindowsFormsApp.csproj">
+      <Project>{669232b3-cb21-4fbe-99a8-1a3bfada84dc}</Project>
+      <Name>SalutWindowsFormsApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

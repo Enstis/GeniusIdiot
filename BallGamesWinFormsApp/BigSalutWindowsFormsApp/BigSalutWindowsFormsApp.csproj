@@ -53,6 +53,8 @@
       <DependentUpon>BigMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BigSalut.cs" />
+    <Compile Include="CrossLine.cs" />
+    <Compile Include="HitLineEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BigMainForm.resx">

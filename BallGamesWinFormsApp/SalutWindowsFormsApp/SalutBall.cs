@@ -9,8 +9,11 @@ using System.Windows.Forms;
 
 namespace SalutWindowsFormsApp
 {
+
     public class SalutBall : MoveBallRandom
     {
+       
+
         private float g = 0.2f;
         public SalutBall(Form form, float centerX, float centerY) : base(form)
         {
@@ -24,6 +27,7 @@ namespace SalutWindowsFormsApp
         {
             base.Go();
             vy += g;
+
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ball.CommonNet;
+using SalutWindowsFormsApp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace BigSalutWindowsFormsApp
@@ -13,7 +14,7 @@ namespace BigSalutWindowsFormsApp
     
     public class BigSalut : MoveBallRandom
     {
-        
+        public event EventHandler<HitLineEventArgs> HitLine;
         public BigSalut(Form form) : base(form)
         {
             centerY = DownSide() + radius;
@@ -23,17 +24,22 @@ namespace BigSalutWindowsFormsApp
             
 
         }
-        public void ChangeColorBrush()
-        {
-            brush = new SolidBrush(Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
-        }
+        
         public bool CrossBoomHorizontalLine()
         {
-            if (centerY < form.ClientSize.Height / 2) 
+            if (centerY <= DownSide() / 2) 
             {
                 return true;
             }
             return false;
+        }
+        protected override void Go()
+        {
+            base.Go();
+            if (CrossBoomHorizontalLine())
+            {
+                HitLine.Invoke(this, new HitLineEventArgs(CrossLine.MiddleY));
+            }
         }
         public float BallX()
         {

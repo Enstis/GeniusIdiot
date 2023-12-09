@@ -6,6 +6,7 @@ namespace Ball.CommonNet
 {
     public class Balll
     {
+        protected Random random = new Random();
         protected Form form;
         protected float centerX = 10;
         protected float centerY = 10;
@@ -118,6 +119,10 @@ namespace Ball.CommonNet
             var graphics = form.CreateGraphics();
             var rectangle = new Rectangle((int)centerX - radius, (int)centerY - radius, 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
+        }
+        public void ChangeColorBrush()
+        {
+            brush = new SolidBrush(Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
         }
     }
 }

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalutWindowsFormsApp", "Sal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigSalutWindowsFormsApp", "BigSalutWindowsFormsApp\BigSalutWindowsFormsApp.csproj", "{14681682-FEF6-4209-ACED-9B41B72E76B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruitNinjaWindowsFormsApp", "FruitNinjaWindowsFormsApp\FruitNinjaWindowsFormsApp.csproj", "{D1FFE102-3891-413D-90C6-5182455B19B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{14681682-FEF6-4209-ACED-9B41B72E76B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14681682-FEF6-4209-ACED-9B41B72E76B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14681682-FEF6-4209-ACED-9B41B72E76B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FFE102-3891-413D-90C6-5182455B19B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FFE102-3891-413D-90C6-5182455B19B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FFE102-3891-413D-90C6-5182455B19B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FFE102-3891-413D-90C6-5182455B19B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

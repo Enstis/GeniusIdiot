@@ -38,6 +38,7 @@
             this.Name = "FruitNinjaForm";
             this.Text = "FruitNinja";
             this.Load += new System.EventHandler(this.FruitNinjaForm_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FruitNinjaForm_MouseMove);
             this.ResumeLayout(false);
 
         }

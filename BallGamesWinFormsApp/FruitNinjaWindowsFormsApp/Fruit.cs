@@ -27,5 +27,6 @@ namespace FruitNinjaWindowsFormsApp
             base.Go();
             vy += g;
         }
+       
     }
 }

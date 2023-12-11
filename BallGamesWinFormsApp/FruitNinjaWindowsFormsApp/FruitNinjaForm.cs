@@ -40,5 +40,14 @@ namespace FruitNinjaWindowsFormsApp
            
            
         }
+
+        private void FruitNinjaForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(fruit.Contains(e.X, e.Y))
+            {
+                fruit.Stop();
+                fruit.Clear();
+            }
+        }
     }
 }

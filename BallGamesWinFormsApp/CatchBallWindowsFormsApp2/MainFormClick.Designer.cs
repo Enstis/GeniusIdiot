@@ -72,6 +72,7 @@
             this.Controls.Add(this.startButton);
             this.Name = "MainFormClick";
             this.Text = "Поймай мячик мышкой";
+            this.Load += new System.EventHandler(this.MainFormClick_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormClick_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();

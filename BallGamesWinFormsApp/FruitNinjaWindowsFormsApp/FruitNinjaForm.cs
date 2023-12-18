@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ball.CommonNet;
+using System.Net.Sockets;
 
 namespace FruitNinjaWindowsFormsApp
 {
@@ -18,6 +19,9 @@ namespace FruitNinjaWindowsFormsApp
         private Timer timer = new Timer();
         private Random rand = new Random();
         private int countBallSalut = 2;
+        private int score = 0;
+        
+        
         public FruitNinjaForm()
         {
             InitializeComponent();
@@ -31,6 +35,7 @@ namespace FruitNinjaWindowsFormsApp
             fruit = new Fruit(this);
             fruit.ChangeColorBrush();
             fruit.Start();
+
         }
 
         private void FruitNinjaForm_Load(object sender, EventArgs e)
@@ -43,11 +48,23 @@ namespace FruitNinjaWindowsFormsApp
 
         private void FruitNinjaForm_MouseMove(object sender, MouseEventArgs e)
         {
-            if(fruit.Contains(e.X, e.Y))
+            if(fruit.Contains(e.X, e.Y) && fruit.IsMoveable())
             {
                 fruit.Stop();
                 fruit.Clear();
+                score++;
+                scoreLabel.Text = score.ToString();
             }
+            if (fruit.IsBlack())
+            {
+                MessageBox.Show("Вы проиграли");
+                Refresh();
+            }
+        }
+
+        private void scoreLabel_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

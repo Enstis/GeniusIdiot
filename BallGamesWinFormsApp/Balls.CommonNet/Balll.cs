@@ -122,7 +122,8 @@ namespace Ball.CommonNet
         }
         public void ChangeColorBrush()
         {
-            brush = new SolidBrush(Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
+            //brush = new SolidBrush(Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
+            brush = new SolidBrush(Color.FromArgb(0, 0, 0));
         }
     }
 }

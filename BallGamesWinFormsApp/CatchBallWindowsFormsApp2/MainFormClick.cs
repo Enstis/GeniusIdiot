@@ -62,5 +62,10 @@ namespace CatchBallWindowsFormsApp2
                 countBallsLabel.Text = countCatchBall.ToString();
             }
         }
+
+        private void MainFormClick_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -14,40 +14,30 @@ namespace BigSalutWindowsFormsApp
     
     public class BigSalut : MoveBallRandom
     {
+        private float g = 0.2f;
         public event EventHandler<HitLineEventArgs> HitLine;
         public BigSalut(Form form) : base(form)
         {
             centerY = DownSide() + radius;
             vx = 0;
-            vy = -Math.Abs(2);
+            vy = (float)random.NextDouble() * -6 -5;
             radius = 5;
             
 
         }
         
-        public bool CrossBoomHorizontalLine()
-        {
-            if (centerY <= DownSide() / 2) 
-            {
-                return true;
-            }
-            return false;
-        }
+       
         protected override void Go()
         {
             base.Go();
-            if (CrossBoomHorizontalLine())
+            vy += g;
+            if (vy > 0)
             {
-                HitLine.Invoke(this, new HitLineEventArgs(CrossLine.MiddleY));
+                Stop();
+                Clear();
+                HitLine?.Invoke(this, new HitLineEventArgs(centerX,centerY));
             }
         }
-        public float BallX()
-        {
-            return centerX;
-        }
-        public float BallY()
-        {
-            return centerY;
-        }
+       
     }
 }

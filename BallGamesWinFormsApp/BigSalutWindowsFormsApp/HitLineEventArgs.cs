@@ -2,10 +2,12 @@
 {
     public class HitLineEventArgs
     {
-        public CrossLine CrossLine;
-        public HitLineEventArgs(CrossLine crossLine)
+        public float X;
+        public float Y;
+        public HitLineEventArgs(float pointX, float pointY)
         {
-            CrossLine = crossLine;
+            X = pointX;
+            Y = pointY;
         }
 
     }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BombFruit.cs" />
     <Compile Include="Fruit.cs" />
     <Compile Include="FruitNinjaForm.cs">
       <SubType>Form</SubType>
@@ -55,6 +56,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlowMotionFruit.cs" />
     <EmbeddedResource Include="FruitNinjaForm.resx">
       <DependentUpon>FruitNinjaForm.cs</DependentUpon>
     </EmbeddedResource>

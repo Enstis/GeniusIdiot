@@ -14,12 +14,13 @@ namespace FruitNinjaWindowsFormsApp
     public class Fruit : MoveBallRandom
     {
         private float g = 0.2f;
-        Random random = new Random();
+       
         public Fruit(Form form) : base(form)
         {
-            radius = random.Next(10, 30);
-            vy = -Math.Abs((float)random.NextDouble() * 10 - 15);
+            radius = random.Next(10, 15);
+            vy = -Math.Abs((float)random.NextDouble() * -6 -7);
             centerY = DownSide() + radius;
+            brush = new SolidBrush(Color.FromArgb(random.Next(256), random.Next(256), random.Next(256)));   
             
         }
 
@@ -27,6 +28,11 @@ namespace FruitNinjaWindowsFormsApp
         {
             base.Go();
             vy += g;
+
+            if (centerY >DownSide() + 2*radius)
+            {
+                Stop();
+            }
         }
        
         public bool IsBlack()

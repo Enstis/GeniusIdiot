@@ -49,7 +49,7 @@
             this.scoreLabel.Size = new System.Drawing.Size(14, 16);
             this.scoreLabel.TabIndex = 1;
             this.scoreLabel.Text = "0";
-            this.scoreLabel.Click += new System.EventHandler(this.scoreLabel_Click);
+            
             // 
             // FruitNinjaForm
             // 

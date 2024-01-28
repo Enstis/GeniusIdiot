@@ -12,7 +12,7 @@ namespace Ball.CommonNet
 {
     public class RandomPointBall : Balll
     {
-        public static Random random = new Random();
+       
         public RandomPointBall(Form form) : base(form)
         {
             centerX = random.Next(LeftSide(), RightSide());

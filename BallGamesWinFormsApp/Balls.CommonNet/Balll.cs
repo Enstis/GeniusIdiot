@@ -125,5 +125,11 @@ namespace Ball.CommonNet
             //brush = new SolidBrush(Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
             brush = new SolidBrush(Color.FromArgb(0, 0, 0));
         }
+        public bool Intersect(Balll other)
+        {
+            var dx = centerX - other.centerX;
+            var dy = centerY - other.centerY;
+            return dx*dx +dy * dy <= (radius + other.radius)* (radius + other.radius);
+        }
     }
 }
